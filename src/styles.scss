@@ -4,9 +4,18 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background: #303030;
   color: #fff;
+}
+
+a {
+  color: #fff;
+}
+
+a.active-link {
+  color: rgb(200, 63, 200)
 }
