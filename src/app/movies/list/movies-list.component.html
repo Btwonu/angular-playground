@@ -1,1 +1,21 @@
-<p>movies-list works!</p>
+<div *ngFor="let movie of movies" class="movie">
+  <p>movie_id: {{ movie.movie_id }}</p>
+
+  <p>Title: {{ movie.title }}</p>
+
+  <p>start_year: {{ movie.start_year }}</p>
+
+  <p>runtime_minutes: {{ movie.runtime_minutes }}</p>
+
+  <p>rating: {{ movie.rating }}</p>
+
+  <p>votes_count: {{ movie.votes_count }}</p>
+
+  <p>genres:</p>
+
+  <ul>
+    <li *ngFor="let genre of movie.genres">{{ genre }}</li>
+  </ul>
+
+  <p>---</p>
+</div><!-- /.movie -->
