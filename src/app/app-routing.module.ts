@@ -14,6 +14,11 @@ const routes: Routes = [
       import('./movies/movies.module').then((m) => m.MoviesModule),
   },
   {
+    path: 'watchlist',
+    loadChildren: () =>
+      import('./watchlist/watchlist.module').then((m) => m.WatchlistModule),
+  },
+  {
     path: '**',
     component: PageNotFoundComponent,
   },

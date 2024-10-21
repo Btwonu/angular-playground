@@ -1,16 +1,18 @@
-<main>
+<header>
   <nav class="nav">
     <ul>
       <li>
-        <a routerLink="/first" routerLinkActive="active-link">First Component</a>
+        <a routerLink="/movies" routerLinkActive="active-link">Movies</a>
       </li>
 
       <li>
-        <a routerLink="/second" routerLinkActive="active-link">Second Component</a>
+        <a routerLink="/watchlist" routerLinkActive="active-link">Watchlist</a>
       </li>
     </ul>
   </nav><!-- /.nav -->
+</header>
 
+<main>
+  <router-outlet></router-outlet>
 </main>
 
-<router-outlet></router-outlet>

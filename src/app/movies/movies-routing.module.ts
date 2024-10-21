@@ -1,19 +1,29 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { MoviesComponent } from "./movies.component";
-import { MoviesListComponent } from "./list/movies-list.component";
-import { MovieDetailComponent } from "./movie-detail/movie-detail.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { MoviesComponent } from './movies.component';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MoviesListComponent } from './list/movies-list.component';
 
 const routes: Routes = [
   {
     path: '',
     component: MoviesComponent,
-    pathMatch: 'full',
+    children: [
+      {
+        path: 'list',
+        component: MoviesListComponent,
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
+    ]
   },
   {
     path: ':id',
     component: MovieDetailComponent,
-  }
+  },
 ];
 
 @NgModule({
