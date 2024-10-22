@@ -20,7 +20,7 @@ export class MovieDetailComponent implements OnInit {
     console.log(this.route);
 
     this.route.params.subscribe((params) => {
-      this.movieService.getMovie(params['id']).subscribe((movie) => {
+      this.movieService.getOne(params['id']).subscribe((movie) => {
         this.movie = movie;
       });
     });

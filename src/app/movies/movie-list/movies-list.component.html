@@ -1,4 +1,14 @@
 <app-movie
   *ngFor="let movie of movies" class="movie"
   [movie]="movie"
-></app-movie><!-- /.app-movie -->
+>
+</app-movie><!-- /.app-movie -->
+
+<mat-paginator
+  [length]="length"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="pageEvent = getMovies($event)"
+  aria-label="Select page"
+>
+</mat-paginator>
