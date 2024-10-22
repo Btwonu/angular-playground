@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-watchlist',
-  templateUrl: './watchlist.component.html',
-  styleUrls: ['./watchlist.component.scss']
+  templateUrl: './watchlists.component.html',
+  styleUrls: ['./watchlists.component.scss']
 })
-export class WatchlistComponent implements OnInit {
+export class WatchlistsComponent implements OnInit {
 
   constructor() { }
 

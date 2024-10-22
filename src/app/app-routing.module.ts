@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'watchlist',
     loadChildren: () =>
-      import('./watchlist/watchlist.module').then((m) => m.WatchlistModule),
+      import('./watchlists/watchlists.module').then((m) => m.WatchlistsModule),
   },
   {
     path: '**',

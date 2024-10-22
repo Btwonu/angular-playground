@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { WatchlistComponent } from './watchlist.component';
+import { WatchlistsComponent } from './watchlists.component';
 import { WatchlistDashboardComponent } from './watchlist-dashboard/watchlist-dashboard.component';
 import { WatchlistListComponent } from './watchlist-list/watchlist-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: WatchlistComponent,
+    component: WatchlistsComponent,
     children: [
       {
         path: 'list',
@@ -25,4 +25,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class WatchlistRoutingModule {}
+export class WatchlistsRoutingModule {}
