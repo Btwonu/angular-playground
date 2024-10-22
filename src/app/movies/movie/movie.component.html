@@ -1,6 +1,6 @@
 <p>movie_id: {{ movie?.movie_id }}</p>
 
-<p>Title: {{ movie?.title }}</p>
+<a [routerLink]="['/movies', movie?.movie_id]">Title: {{ movie?.title }}</a>
 
 <p>start_year: {{ movie?.start_year }}</p>
 
@@ -15,5 +15,7 @@
 <ul>
   <li *ngFor="let genre of movie?.genres">{{ genre }}</li>
 </ul>
+
+<button (click)="addToWatchlist(movie?.movie_id)">Add</button>
 
 <p>---</p>

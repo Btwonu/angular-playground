@@ -1,14 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-type Movie = {
-  movie_id: string;
-  title: string;
-  start_year: number;
-  runtime_minutes: number;
-  rating: number;
-  votes_count: number;
-  genres: string[];
-}
+import { Movie } from 'src/app/types/movies';
 
 @Component({
   selector: 'app-movie',
@@ -21,5 +12,11 @@ export class MovieComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  addToWatchlist(movieId: string | undefined) {
+    if (!movieId) return;
+
+    console.log(`Add ${movieId} to watchlist`);
   }
 }
