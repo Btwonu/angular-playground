@@ -1,21 +1,31 @@
-<p>movie_id: {{ movie?.movie_id }}</p>
+<div>
+  <p>movie_id: {{ movie?.movie_id }}</p>
 
-<a [routerLink]="['/movies', movie?.movie_id]">Title: {{ movie?.title }}</a>
+  <a [routerLink]="['/movies', movie?.movie_id]">Title: {{ movie?.title }}</a>
+</div>
 
-<p>start_year: {{ movie?.start_year }}</p>
+<app-dialog [buttonLabel]="'Add to watchlist'">
+  <div class="movie-content">
+    <p>Title: {{ movie?.title }}</p>
 
-<p>runtime_minutes: {{ movie?.runtime_minutes }}</p>
+    <p>start_year: {{ movie?.start_year }}</p>
 
-<p>rating: {{ movie?.rating }}</p>
+    <p>runtime_minutes: {{ movie?.runtime_minutes }}</p>
 
-<p>votes_count: {{ movie?.votes_count }}</p>
+    <p>rating: {{ movie?.rating }}</p>
 
-<p>genres:</p>
+    <p>votes_count: {{ movie?.votes_count }}</p>
 
-<ul>
-  <li *ngFor="let genre of movie?.genres">{{ genre }}</li>
-</ul>
+    <p>genres:</p>
 
-<button (click)="addToWatchlist(movie?.movie_id)">Add</button>
+    <ul>
+      <li *ngFor="let genre of movie?.genres">{{ genre }}</li>
+    </ul>
+  </div>
+  <!-- /.movie-content -->
 
-<p>---</p>
+  <app-form></app-form>
+</app-dialog>
+<!-- <button (click)="addToWatchlist(movie?.movie_id)">Add</button> -->
+
+<hr>

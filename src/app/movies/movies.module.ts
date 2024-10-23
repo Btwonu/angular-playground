@@ -9,6 +9,8 @@ import { MovieComponent } from './movie/movie.component';
 import { MoviePaginationComponent } from './movie-pagination/movie-pagination.component';
 
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { FormComponent } from '../shared/components/form/form.component';
+import { DialogComponent } from '../shared/components/dialog/dialog.component';
 
 console.log('movies module');
 
@@ -21,6 +23,12 @@ console.log('movies module');
     MovieComponent,
     MoviePaginationComponent,
   ],
-  imports: [CommonModule, MoviesRoutingModule, MatPaginatorModule],
+  imports: [
+    CommonModule,
+    MoviesRoutingModule,
+    MatPaginatorModule,
+    FormComponent,
+    DialogComponent,
+  ],
 })
 export class MoviesModule {}
