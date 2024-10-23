@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Movie } from 'src/app/types/movies';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface MovieResponse {
   data: Movie[];
@@ -15,14 +16,18 @@ interface MovieResponse {
     next: string | null;
     first: string | null;
     last: string | null;
-  }
+  };
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class MovieService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   log() {
     console.log('movie service');
@@ -33,6 +38,15 @@ export class MovieService {
 
     url.searchParams.append('page', (pageIndex + 1).toString());
     url.searchParams.append('limit', limit.toString());
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        page: pageIndex + 1,
+        limit,
+      },
+      queryParamsHandling: 'merge',
+    });
 
     console.log(`url: ${url.toString()}`);
 
