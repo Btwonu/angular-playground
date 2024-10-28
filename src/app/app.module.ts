@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
@@ -26,6 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDividerModule,
     MatIconModule,
     MatSnackBarModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

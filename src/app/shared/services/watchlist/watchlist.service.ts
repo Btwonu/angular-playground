@@ -20,8 +20,16 @@ export class WatchlistService {
 
   addToWatchlist(movieId: string): Observable<any> {
     console.log(`Add ${movieId} to watchlist`);
-    return this.http.post('https://movies.api/watchlist', {
-      movieId,
-    }).pipe(catchError(this.handleError))
+    return this.http
+      .post('https://movies.api/watchlist', {
+        movieId,
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  getUserWatchlists(): Observable<any> {
+    return this.http
+      .get('https://movies.api/users/1/watchlists')
+      .pipe(catchError(this.handleError));
   }
 }

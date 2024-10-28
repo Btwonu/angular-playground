@@ -1,4 +1,4 @@
-<mat-form-field appearance="fill">
+<!-- <mat-form-field appearance="fill">
   <mat-label>Choose watch state</mat-label>
 
   <mat-select>
@@ -12,4 +12,38 @@
 
 <div>
   <button mat-raised-button color="accent">Add</button>
-</div>
+</div> -->
+
+<form #addToWatchlistForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+  <input type="text" name="username" [(ngModel)]="username" />
+
+  <p>Chosen status: {{ currentStatus }}</p>
+
+  <p>Chosen rating: {{ currentRating }}</p>
+
+  <select *ngIf="watchlists.length" name="watchlists" id="watchlists">
+    <option *ngFor="let watchlist of watchlists" value="{{ watchlist.title }}">
+      {{ watchlist.title }}
+    </option>
+  </select>
+
+  <select *ngIf="statuses.length" name="status" id="status" [(ngModel)]="currentStatus">
+    <option *ngFor="let status of statuses" [value]="status">
+      {{ status }}
+    </option>
+  </select>
+
+  <select *ngIf="ratings.length" name="rating" id="rating" [(ngModel)]="currentRating">
+    <option value="Unrated">-</option>
+
+    <option *ngFor="let rating of ratings" value="{{ rating }}">
+      {{ rating }}
+    </option>
+  </select>
+
+  <input type="checkbox" name="checkbox" id="check-0" />
+
+  <input type="radio" name="radio" id="rad-0" />
+
+  <input type="submit" value="Submit" />
+</form>
