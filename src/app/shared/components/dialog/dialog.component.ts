@@ -20,10 +20,6 @@ export class DialogComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  ngAfterViewInit() {
-    console.log(this.modelContent);
-  }
-
   openDialog() {
     const dialogRef = this.dialog.open(this.modelContent);
   }
