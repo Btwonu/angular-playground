@@ -7,3 +7,15 @@ export interface Movie {
   votes_count: number;
   genres: string[];
 }
+
+export interface FiltrationParams {
+  yearGt: number | undefined;
+  yearLt: number | undefined;
+  ratingGt: number | undefined;
+  ratingLt: number | undefined;
+  runtimeGt: number | undefined;
+  runtimeLt: number | undefined;
+  votesGt: number | undefined;
+  votesLt: number | undefined;
+  genres: string[] | undefined;
+}

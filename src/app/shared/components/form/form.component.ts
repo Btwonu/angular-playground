@@ -2,8 +2,10 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -36,13 +38,6 @@ export class FormComponent implements OnInit, AfterViewInit {
   @ViewChild('addToWatchlistForm') form!: NgForm;
   @ViewChild('status') status!: NgModel;
   @ViewChild('watchlist') watchlist!: NgModel;
-
-  constructor(
-    private watchlistService: WatchlistService,
-    private NotificationService: NotificationService,
-    private cd: ChangeDetectorRef
-  ) {}
-
   @Input('movieId') movieId: string | undefined;
 
   statuses: string[] = ['Plan to Watch', 'Watching', 'Watched'];
@@ -51,6 +46,12 @@ export class FormComponent implements OnInit, AfterViewInit {
   currentWatchlist: string = '';
   currentStatus: string = '';
   currentRating: number | string = '';
+
+  constructor(
+    private watchlistService: WatchlistService,
+    private NotificationService: NotificationService,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.watchlistService.getUserWatchlists().subscribe((res) => {

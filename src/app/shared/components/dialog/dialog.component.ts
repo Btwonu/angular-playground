@@ -1,9 +1,14 @@
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { FormComponent } from '../form/form.component';
 
 @Component({
   selector: 'app-dialog',
@@ -16,11 +21,13 @@ export class DialogComponent implements OnInit {
   @Input() buttonLabel: string = 'Open Dialog';
   @ViewChild('modelContent', { static: false }) modelContent!: TemplateRef<any>;
 
+  dialogRef: MatDialogRef<any> | undefined;
+
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
   openDialog() {
-    const dialogRef = this.dialog.open(this.modelContent);
+    this.dialogRef = this.dialog.open(this.modelContent);
   }
 }

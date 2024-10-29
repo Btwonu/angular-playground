@@ -4,7 +4,9 @@
   <a [routerLink]="['/movies', movie?.movie_id]">Title: {{ movie?.title }}</a>
 </div>
 
-<app-dialog [buttonLabel]="'Add to watchlist'">
+<app-dialog
+  [buttonLabel]="'Add to watchlist'"
+>
   <div class="movie-content">
     <p>Title: {{ movie?.title }}</p>
 
@@ -24,7 +26,9 @@
   </div>
   <!-- /.movie-content -->
 
-  <app-form [movieId]="movie?.movie_id"></app-form>
+  <app-form
+    [movieId]="movie?.movie_id"
+  ></app-form>
 </app-dialog>
 <!-- <button (click)="addToWatchlist(movie?.movie_id)">Add</button> -->
 

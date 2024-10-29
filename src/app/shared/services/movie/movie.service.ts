@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Movie } from 'src/app/types/movies';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FiltrationParams } from 'src/app/types/movies';
 
 interface MovieResponse {
   data: Movie[];
@@ -33,18 +34,25 @@ export class MovieService {
     console.log('movie service');
   }
 
-  getAll(pageIndex: number = 0, limit: number = 10): Observable<MovieResponse> {
+  getFiltered(page: number = 1, limit: number = 10, data: Partial<FiltrationParams>): Observable<MovieResponse> {
     const url = new URL('https://movies.api/list');
+    const queryParams = {};
 
-    url.searchParams.append('page', (pageIndex + 1).toString());
+    url.searchParams.append('page', page.toString());
     url.searchParams.append('limit', limit.toString());
+
+    for (const param of Object.keys(data) as (keyof FiltrationParams)[]) {
+      if (data[param] !== undefined) {
+        url.searchParams.append(param, data[param]!.toString());
+      }
+    }
+
+    console.log(url);
+    console.log(`url: ${url.toString()}`);
 
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: {
-        page: pageIndex + 1,
-        limit,
-      },
+      queryParams,
       queryParamsHandling: 'merge',
     });
 
