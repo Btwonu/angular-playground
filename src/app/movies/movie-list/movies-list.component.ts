@@ -28,6 +28,13 @@ export class MoviesListComponent implements OnInit {
       .getFiltered(pageIndex ? pageIndex + 1 : 0, pageSize, {
         yearGt: 2000,
         yearLt: 2010,
+        ratingGt: 8,
+        ratingLt: 10,
+        runtimeGt: 90,
+        runtimeLt: 150,
+        votesGt: 10000,
+        votesLt: 20000,
+        genres: ['Adventure', 'Comedy'],
       })
       .subscribe((res) => {
         this.movies = res.data;

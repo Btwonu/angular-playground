@@ -9,13 +9,14 @@ export interface Movie {
 }
 
 export interface FiltrationParams {
-  yearGt: number | undefined;
-  yearLt: number | undefined;
-  ratingGt: number | undefined;
-  ratingLt: number | undefined;
-  runtimeGt: number | undefined;
-  runtimeLt: number | undefined;
-  votesGt: number | undefined;
-  votesLt: number | undefined;
-  genres: string[] | undefined;
+  [index: string]: number | string | string[];
+  yearGt: number;
+  yearLt: number;
+  ratingGt: number;
+  ratingLt: number;
+  runtimeGt: number;
+  runtimeLt: number;
+  votesGt: number;
+  votesLt: number;
+  genres: string[];
 }
