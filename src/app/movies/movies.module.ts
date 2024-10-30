@@ -11,6 +11,8 @@ import { MoviePaginationComponent } from './movie-pagination/movie-pagination.co
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormComponent } from '../shared/components/form/form.component';
 import { DialogComponent } from '../shared/components/dialog/dialog.component';
+import { MovieFiltersFormComponent } from './movie-filters-form/movie-filters-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 console.log('movies module');
 
@@ -22,6 +24,7 @@ console.log('movies module');
     DashboardComponent,
     MovieComponent,
     MoviePaginationComponent,
+    MovieFiltersFormComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,7 @@ console.log('movies module');
     MatPaginatorModule,
     FormComponent,
     DialogComponent,
+    ReactiveFormsModule,
   ],
 })
 export class MoviesModule {}
