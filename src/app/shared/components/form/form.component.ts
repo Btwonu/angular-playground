@@ -49,7 +49,7 @@ export class FormComponent implements OnInit, AfterViewInit {
 
   constructor(
     private watchlistService: WatchlistService,
-    private NotificationService: NotificationService,
+    private notificationService: NotificationService,
     private cd: ChangeDetectorRef
   ) {}
 
@@ -67,14 +67,14 @@ export class FormComponent implements OnInit, AfterViewInit {
     console.log('Submit');
 
     if (this.form.invalid) {
-      this.NotificationService.showError(
+      this.notificationService.showError(
         'Please fill out the required form fields'
       );
       return;
     }
 
     if (!this.movieId) {
-      this.NotificationService.showError('Movie id missing');
+      this.notificationService.showError('Movie id missing');
     }
 
     const data = {
@@ -89,10 +89,10 @@ export class FormComponent implements OnInit, AfterViewInit {
 
     const observer = {
       next: (res: any) => {
-        this.NotificationService.showSuccess('Movie added to watchlist');
+        this.notificationService.showSuccess('Movie added to watchlist');
       },
       error: (err: any) => {
-        this.NotificationService.showError(err.message);
+        this.notificationService.showError(err.message);
       },
     };
 
