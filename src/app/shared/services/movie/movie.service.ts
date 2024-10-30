@@ -46,8 +46,11 @@ export class MovieService {
     const url = new URL('https://movies.api/list');
     const queryParams: Partial<FiltrationParams> = {};
 
-    url.searchParams.append('page', page.toString());
-    url.searchParams.append('limit', limit.toString());
+    url.searchParams.append('page', encodeURIComponent(page.toString()));
+    url.searchParams.append('limit', encodeURIComponent(limit.toString()));
+
+    queryParams['page'] = page;
+    queryParams['limit'] = limit;
 
     for (const param of Object.keys(data)) {
       const value = data[param];
@@ -68,8 +71,6 @@ export class MovieService {
       }
     }
 
-    console.log(url);
-    console.log(`url: ${url.toString()}`);
     console.log(queryParams);
 
     this.router.navigate([], {
@@ -77,8 +78,6 @@ export class MovieService {
       queryParams,
       queryParamsHandling: 'merge',
     });
-
-    console.log(`url: ${url.toString()}`);
 
     return this.http.get<MovieResponse>(url.toString());
   }

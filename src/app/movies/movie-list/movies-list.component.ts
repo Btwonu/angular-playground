@@ -21,11 +21,8 @@ export class MoviesListComponent implements OnInit {
   getMovies(event: PageEvent | null) {
     const { length, pageIndex, pageSize, previousPageIndex } = event || {};
 
-    // FIX: Fix pageIndex coming up as undefined
-    console.log({pageIndex});
-
     this.movieService
-      .getFiltered(pageIndex ? pageIndex + 1 : 0, pageSize, {
+      .getFiltered(pageIndex ? pageIndex + 1 : 1, pageSize, {
         yearGt: 2000,
         yearLt: 2010,
         ratingGt: 8,
