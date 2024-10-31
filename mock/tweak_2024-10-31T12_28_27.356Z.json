@@ -1,0 +1,130 @@
+{
+  "configurations": [
+    {
+      "delay": 0,
+      "isRgx": false,
+      "label": "",
+      "method": "GET",
+      "requestPayload": "",
+      "responseHeaders": [
+        {
+          "active": true,
+          "header": "Content-Type",
+          "id": "1ca5e9c0-9783-11ef-992f-a51d1659d534",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "responsePayload": "{\r\n  \"data\": [\r\n    {\r\n      \"id\": 1,\r\n      \"name\": \"Romance\"\r\n    },\r\n    {\r\n      \"id\": 2,\r\n      \"name\": \"Documentary\"\r\n    },\r\n    {\r\n      \"id\": 3,\r\n      \"name\": \"News\"\r\n    },\r\n    {\r\n      \"id\": 4,\r\n      \"name\": \"Sport\"\r\n    },\r\n    {\r\n      \"id\": 5,\r\n      \"name\": \"Action\"\r\n    },\r\n    {\r\n      \"id\": 6,\r\n      \"name\": \"Adventure\"\r\n    },\r\n    {\r\n      \"id\": 7,\r\n      \"name\": \"Biography\"\r\n    },\r\n    {\r\n      \"id\": 8,\r\n      \"name\": \"Drama\"\r\n    },\r\n    {\r\n      \"id\": 9,\r\n      \"name\": \"Fantasy\"\r\n    },\r\n    {\r\n      \"id\": 10,\r\n      \"name\": \"Comedy\"\r\n    },\r\n    {\r\n      \"id\": 11,\r\n      \"name\": \"War\"\r\n    },\r\n    {\r\n      \"id\": 12,\r\n      \"name\": \"Crime\"\r\n    },\r\n    {\r\n      \"id\": 13,\r\n      \"name\": \"Family\"\r\n    },\r\n    {\r\n      \"id\": 14,\r\n      \"name\": \"History\"\r\n    },\r\n    {\r\n      \"id\": 15,\r\n      \"name\": \"Sci-Fi\"\r\n    },\r\n    {\r\n      \"id\": 16,\r\n      \"name\": \"Thriller\"\r\n    },\r\n    {\r\n      \"id\": 17,\r\n      \"name\": \"Western\"\r\n    },\r\n    {\r\n      \"id\": 18,\r\n      \"name\": \"Mystery\"\r\n    },\r\n    {\r\n      \"id\": 19,\r\n      \"name\": \"Horror\"\r\n    },\r\n    {\r\n      \"id\": 20,\r\n      \"name\": \"Music\"\r\n    },\r\n    {\r\n      \"id\": 21,\r\n      \"name\": \"Animation\"\r\n    },\r\n    {\r\n      \"id\": 22,\r\n      \"name\": \"Musical\"\r\n    },\r\n    {\r\n      \"id\": 23,\r\n      \"name\": \"Film-Noir\"\r\n    },\r\n    {\r\n      \"id\": 24,\r\n      \"name\": \"Talk-Show\"\r\n    },\r\n    {\r\n      \"id\": 25,\r\n      \"name\": \"Game-Show\"\r\n    },\r\n    {\r\n      \"id\": 26,\r\n      \"name\": \"Reality-TV\"\r\n    },\r\n    {\r\n      \"id\": 27,\r\n      \"name\": \"Short\"\r\n    }\r\n  ]\r\n}",
+      "status": 200,
+      "url": "https://movies.api/genres"
+    },
+    {
+      "delay": 0,
+      "isRgx": false,
+      "label": "",
+      "method": "GET",
+      "requestPayload": "",
+      "responseHeaders": [
+        {
+          "active": true,
+          "header": "Content-Type",
+          "id": "667a0410-9566-11ef-9e6e-0d3f34ef9466",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "responsePayload": "{\r\n  \"data\": [\r\n    {\r\n      \"id\": \"1\",\r\n      \"title\": \"My fav movies\"\r\n    },\r\n    {\r\n      \"id\": \"2\",\r\n      \"title\": \"My fav movies 2\"\r\n    },\r\n    {\r\n      \"id\": \"3\",\r\n      \"title\": \"My fav movies 3\"\r\n    }\r\n  ]\r\n}",
+      "status": 200,
+      "url": "https://movies.api/users/1/watchlists"
+    },
+    {
+      "delay": 0,
+      "isRgx": false,
+      "label": "",
+      "method": "GET",
+      "requestPayload": "",
+      "responseHeaders": [
+        {
+          "active": true,
+          "header": "Content-Type",
+          "id": "a8ee39d0-909b-11ef-8e09-85eb84a14c8c",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "responsePayload": "{\r\n  \"data\": [\r\n    {\r\n      \"movie_id\": \"tt0121766\",\r\n      \"title\": \"Star Wars: Episode III - Revenge of the Sith\",\r\n      \"start_year\": 2005,\r\n      \"runtime_minutes\": 140,\r\n      \"rating\": 7.6,\r\n      \"votes_count\": 857985,\r\n      \"genres\": [\r\n        \"Action\",\r\n        \"Adventure\",\r\n        \"Fantasy\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0126029\",\r\n      \"title\": \"Shrek\",\r\n      \"start_year\": 2001,\r\n      \"runtime_minutes\": 90,\r\n      \"rating\": 7.9,\r\n      \"votes_count\": 747605,\r\n      \"genres\": [\r\n        \"Adventure\",\r\n        \"Comedy\",\r\n        \"Animation\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0133240\",\r\n      \"title\": \"Treasure Planet\",\r\n      \"start_year\": 2002,\r\n      \"runtime_minutes\": 95,\r\n      \"rating\": 7.2,\r\n      \"votes_count\": 135661,\r\n      \"genres\": [\r\n        \"Adventure\",\r\n        \"Family\",\r\n        \"Animation\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0134847\",\r\n      \"title\": \"Pitch Black\",\r\n      \"start_year\": 2000,\r\n      \"runtime_minutes\": 109,\r\n      \"rating\": 7.0,\r\n      \"votes_count\": 255370,\r\n      \"genres\": [\r\n        \"Action\",\r\n        \"Sci-Fi\",\r\n        \"Horror\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0138524\",\r\n      \"title\": \"Intolerable Cruelty\",\r\n      \"start_year\": 2003,\r\n      \"runtime_minutes\": 100,\r\n      \"rating\": 6.3,\r\n      \"votes_count\": 102525,\r\n      \"genres\": [\r\n        \"Romance\",\r\n        \"Comedy\",\r\n        \"Crime\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0138749\",\r\n      \"title\": \"The Road to El Dorado\",\r\n      \"start_year\": 2000,\r\n      \"runtime_minutes\": 89,\r\n      \"rating\": 6.9,\r\n      \"votes_count\": 109677,\r\n      \"genres\": [\r\n        \"Adventure\",\r\n        \"Comedy\",\r\n        \"Animation\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0139654\",\r\n      \"title\": \"Training Day\",\r\n      \"start_year\": 2001,\r\n      \"runtime_minutes\": 122,\r\n      \"rating\": 7.8,\r\n      \"votes_count\": 480461,\r\n      \"genres\": [\r\n        \"Drama\",\r\n        \"Crime\",\r\n        \"Thriller\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0144084\",\r\n      \"title\": \"American Psycho\",\r\n      \"start_year\": 2000,\r\n      \"runtime_minutes\": 102,\r\n      \"rating\": 7.6,\r\n      \"votes_count\": 738180,\r\n      \"genres\": [\r\n        \"Drama\",\r\n        \"Crime\",\r\n        \"Horror\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0159365\",\r\n      \"title\": \"Cold Mountain\",\r\n      \"start_year\": 2003,\r\n      \"runtime_minutes\": 154,\r\n      \"rating\": 7.2,\r\n      \"votes_count\": 157570,\r\n      \"genres\": [\r\n        \"Romance\",\r\n        \"Adventure\",\r\n        \"Drama\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0161081\",\r\n      \"title\": \"What Lies Beneath\",\r\n      \"start_year\": 2000,\r\n      \"runtime_minutes\": 130,\r\n      \"rating\": 6.6,\r\n      \"votes_count\": 137442,\r\n      \"genres\": [\r\n        \"Drama\",\r\n        \"Mystery\",\r\n        \"Horror\"\r\n      ]\r\n    }\r\n  ],\r\n  \"total_count\": 1863,\r\n  \"page\": 1,\r\n  \"per_page\": 10,\r\n  \"page_count\": 187,\r\n  \"links\": {\r\n    \"self\": \"/movies?page=1&per_page=10\",\r\n    \"prev\": null,\r\n    \"next\": \"/movies?page=2&per_page=10\",\r\n    \"first\": \"/movies?page=1&per_page=10\",\r\n    \"last\": \"/movies?page=187&per_page=10\"\r\n  }\r\n}",
+      "status": 200,
+      "url": "https://movies.api/list?page=2&limit=10"
+    },
+    {
+      "delay": 0,
+      "isRgx": false,
+      "label": "",
+      "method": "GET",
+      "requestPayload": "",
+      "responseHeaders": [
+        {
+          "active": true,
+          "header": "Content-Type",
+          "id": "c395cfa0-96ef-11ef-8473-ff5ac6eab255",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "responsePayload": "{\r\n  \"data\": [\r\n    {\r\n      \"movie_id\": \"tt0118694\",\r\n      \"title\": \"In the Mood for Love\",\r\n      \"start_year\": 2000,\r\n      \"runtime_minutes\": 98,\r\n      \"rating\": 8.1,\r\n      \"votes_count\": 170004,\r\n      \"genres\": [\r\n        \"Romance\",\r\n        \"Drama\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0120630\",\r\n      \"title\": \"Chicken Run\",\r\n      \"start_year\": 2000,\r\n      \"runtime_minutes\": 84,\r\n      \"rating\": 7.1,\r\n      \"votes_count\": 214417,\r\n      \"genres\": [\r\n        \"Adventure\",\r\n        \"Comedy\",\r\n        \"Animation\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0120681\",\r\n      \"title\": \"From Hell\",\r\n      \"start_year\": 2001,\r\n      \"runtime_minutes\": 122,\r\n      \"rating\": 6.7,\r\n      \"votes_count\": 165571,\r\n      \"genres\": [\r\n        \"Thriller\",\r\n        \"Mystery\",\r\n        \"Horror\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0120737\",\r\n      \"title\": \"The Lord of the Rings: The Fellowship of the Ring\",\r\n      \"start_year\": 2001,\r\n      \"runtime_minutes\": 178,\r\n      \"rating\": 8.9,\r\n      \"votes_count\": 2038846,\r\n      \"genres\": [\r\n        \"Action\",\r\n        \"Adventure\",\r\n        \"Drama\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0120755\",\r\n      \"title\": \"Mission: Impossible II\",\r\n      \"start_year\": 2000,\r\n      \"runtime_minutes\": 123,\r\n      \"rating\": 6.1,\r\n      \"votes_count\": 382270,\r\n      \"genres\": [\r\n        \"Action\",\r\n        \"Adventure\",\r\n        \"Thriller\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0120804\",\r\n      \"title\": \"Resident Evil\",\r\n      \"start_year\": 2002,\r\n      \"runtime_minutes\": 100,\r\n      \"rating\": 6.6,\r\n      \"votes_count\": 292459,\r\n      \"genres\": [\r\n        \"Action\",\r\n        \"Sci-Fi\",\r\n        \"Horror\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0120912\",\r\n      \"title\": \"Men in Black II\",\r\n      \"start_year\": 2002,\r\n      \"runtime_minutes\": 88,\r\n      \"rating\": 6.2,\r\n      \"votes_count\": 409403,\r\n      \"genres\": [\r\n        \"Action\",\r\n        \"Adventure\",\r\n        \"Comedy\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0120917\",\r\n      \"title\": \"The Emperor's New Groove\",\r\n      \"start_year\": 2000,\r\n      \"runtime_minutes\": 78,\r\n      \"rating\": 7.4,\r\n      \"votes_count\": 229720,\r\n      \"genres\": [\r\n        \"Adventure\",\r\n        \"Comedy\",\r\n        \"Animation\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0121164\",\r\n      \"title\": \"Corpse Bride\",\r\n      \"start_year\": 2005,\r\n      \"runtime_minutes\": 77,\r\n      \"rating\": 7.4,\r\n      \"votes_count\": 303113,\r\n      \"genres\": [\r\n        \"Drama\",\r\n        \"Comedy\",\r\n        \"Animation\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0121765\",\r\n      \"title\": \"Star Wars: Episode II - Attack of the Clones\",\r\n      \"start_year\": 2002,\r\n      \"runtime_minutes\": 142,\r\n      \"rating\": 6.6,\r\n      \"votes_count\": 770274,\r\n      \"genres\": [\r\n        \"Action\",\r\n        \"Adventure\",\r\n        \"Fantasy\"\r\n      ]\r\n    }\r\n  ],\r\n  \"total_count\": 1863,\r\n  \"page\": 1,\r\n  \"per_page\": 10,\r\n  \"page_count\": 187,\r\n  \"links\": {\r\n    \"self\": \"/movies?page=1&per_page=10\",\r\n    \"prev\": null,\r\n    \"next\": \"/movies?page=2&per_page=10\",\r\n    \"first\": \"/movies?page=1&per_page=10\",\r\n    \"last\": \"/movies?page=187&per_page=10\"\r\n  }\r\n}",
+      "status": 200,
+      "url": "https://movies.api/list?page=0&limit=10&year_gt=2000&year_lt=2010&rating_gt=8&rating_lt=10&runtime_gt=90&runtime_lt=150&votes_gt=10000&votes_lt=20000&genres=Adventure%2CComedy"
+    },
+    {
+      "delay": 0,
+      "isRgx": false,
+      "label": "",
+      "method": "GET",
+      "requestPayload": "",
+      "responseHeaders": [
+        {
+          "active": true,
+          "header": "Content-Type",
+          "id": "c78eb3d0-907b-11ef-820f-37d21df3d2a0",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "responsePayload": "{\r\n  \"movie_id\": \"tt0118694\",\r\n  \"title\": \"In the Mood for Love\",\r\n  \"start_year\": 2000,\r\n  \"runtime_minutes\": 98,\r\n  \"rating\": 8.1,\r\n  \"votes_count\": 170004,\r\n  \"genres\": [\r\n    \"Romance\",\r\n    \"Drama\"\r\n  ]\r\n}",
+      "status": 200,
+      "url": "https://movies.api/tt0118694"
+    },
+    {
+      "delay": 0,
+      "isRgx": false,
+      "label": "",
+      "method": "GET",
+      "requestPayload": "",
+      "responseHeaders": [
+        {
+          "active": true,
+          "header": "Content-Type",
+          "id": "cb6435c0-908f-11ef-ae1a-8ff5e8289ca0",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "responsePayload": "{\r\n  \"data\": [\r\n    {\r\n      \"movie_id\": \"tt0118694\",\r\n      \"title\": \"In the Mood for Love\",\r\n      \"start_year\": 2000,\r\n      \"runtime_minutes\": 98,\r\n      \"rating\": 8.1,\r\n      \"votes_count\": 170004,\r\n      \"genres\": [\r\n        \"Romance\",\r\n        \"Drama\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0120630\",\r\n      \"title\": \"Chicken Run\",\r\n      \"start_year\": 2000,\r\n      \"runtime_minutes\": 84,\r\n      \"rating\": 7.1,\r\n      \"votes_count\": 214417,\r\n      \"genres\": [\r\n        \"Adventure\",\r\n        \"Comedy\",\r\n        \"Animation\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0120681\",\r\n      \"title\": \"From Hell\",\r\n      \"start_year\": 2001,\r\n      \"runtime_minutes\": 122,\r\n      \"rating\": 6.7,\r\n      \"votes_count\": 165571,\r\n      \"genres\": [\r\n        \"Thriller\",\r\n        \"Mystery\",\r\n        \"Horror\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0120737\",\r\n      \"title\": \"The Lord of the Rings: The Fellowship of the Ring\",\r\n      \"start_year\": 2001,\r\n      \"runtime_minutes\": 178,\r\n      \"rating\": 8.9,\r\n      \"votes_count\": 2038846,\r\n      \"genres\": [\r\n        \"Action\",\r\n        \"Adventure\",\r\n        \"Drama\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0120755\",\r\n      \"title\": \"Mission: Impossible II\",\r\n      \"start_year\": 2000,\r\n      \"runtime_minutes\": 123,\r\n      \"rating\": 6.1,\r\n      \"votes_count\": 382270,\r\n      \"genres\": [\r\n        \"Action\",\r\n        \"Adventure\",\r\n        \"Thriller\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0120804\",\r\n      \"title\": \"Resident Evil\",\r\n      \"start_year\": 2002,\r\n      \"runtime_minutes\": 100,\r\n      \"rating\": 6.6,\r\n      \"votes_count\": 292459,\r\n      \"genres\": [\r\n        \"Action\",\r\n        \"Sci-Fi\",\r\n        \"Horror\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0120912\",\r\n      \"title\": \"Men in Black II\",\r\n      \"start_year\": 2002,\r\n      \"runtime_minutes\": 88,\r\n      \"rating\": 6.2,\r\n      \"votes_count\": 409403,\r\n      \"genres\": [\r\n        \"Action\",\r\n        \"Adventure\",\r\n        \"Comedy\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0120917\",\r\n      \"title\": \"The Emperor's New Groove\",\r\n      \"start_year\": 2000,\r\n      \"runtime_minutes\": 78,\r\n      \"rating\": 7.4,\r\n      \"votes_count\": 229720,\r\n      \"genres\": [\r\n        \"Adventure\",\r\n        \"Comedy\",\r\n        \"Animation\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0121164\",\r\n      \"title\": \"Corpse Bride\",\r\n      \"start_year\": 2005,\r\n      \"runtime_minutes\": 77,\r\n      \"rating\": 7.4,\r\n      \"votes_count\": 303113,\r\n      \"genres\": [\r\n        \"Drama\",\r\n        \"Comedy\",\r\n        \"Animation\"\r\n      ]\r\n    },\r\n    {\r\n      \"movie_id\": \"tt0121765\",\r\n      \"title\": \"Star Wars: Episode II - Attack of the Clones\",\r\n      \"start_year\": 2002,\r\n      \"runtime_minutes\": 142,\r\n      \"rating\": 6.6,\r\n      \"votes_count\": 770274,\r\n      \"genres\": [\r\n        \"Action\",\r\n        \"Adventure\",\r\n        \"Fantasy\"\r\n      ]\r\n    }\r\n  ],\r\n  \"total_count\": 1863,\r\n  \"page\": 1,\r\n  \"per_page\": 10,\r\n  \"page_count\": 187,\r\n  \"links\": {\r\n    \"self\": \"/movies?page=1&per_page=10\",\r\n    \"prev\": null,\r\n    \"next\": \"/movies?page=2&per_page=10\",\r\n    \"first\": \"/movies?page=1&per_page=10\",\r\n    \"last\": \"/movies?page=187&per_page=10\"\r\n  }\r\n}",
+      "status": 200,
+      "url": "https://movies.api/list?page=1&limit=10"
+    },
+    {
+      "delay": 0,
+      "isRgx": false,
+      "label": "",
+      "method": "POST",
+      "requestPayload": "",
+      "responseHeaders": [
+        {
+          "active": true,
+          "header": "Content-Type",
+          "id": "fcf85dc0-95fb-11ef-bf55-739618331348",
+          "value": "application/json; charset=utf-8"
+        }
+      ],
+      "responsePayload": "{ \"status\": 200, \"response\": \"OK\" }",
+      "status": 200,
+      "url": "https://movies.api/watchlists/1"
+    }
+  ]
+}
