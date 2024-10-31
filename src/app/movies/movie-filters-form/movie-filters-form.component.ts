@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, pipe } from 'rxjs';
 import { MovieService } from 'src/app/shared/services/movie/movie.service';
 import { FiltrationParams } from 'src/app/types/movies';
 
@@ -20,27 +21,44 @@ export class MovieFiltersFormComponent implements OnInit {
         yearGt: new FormControl(''),
         yearLt: new FormControl(''),
       }),
-      username: new FormControl(''),
+      rating: new FormGroup({
+        ratingGt: new FormControl(''),
+        ratingLt: new FormControl(''),
+      }),
+      runtime: new FormGroup({
+        runtimeGt: new FormControl(''),
+        runtimeLt: new FormControl(''),
+      }),
+      votes: new FormGroup({
+        votesGt: new FormControl(''),
+        votesLt: new FormControl(''),
+      }),
     });
 
     this.yearGt = this.formModel?.get('year.yearGt')?.value;
   }
 
   ngOnInit(): void {
-    this.formModel.valueChanges.subscribe((value) => {
-      const {
-        year: { yearGt, yearLt },
-      } = value;
+    this.formModel.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((value) => {
+        const {
+          year: { yearGt, yearLt },
+          rating: { ratingGt, ratingLt },
+          runtime: { runtimeGt, runtimeLt },
+          votes: { votesGt, votesLt },
+        } = value;
 
-      this.filterMovies.emit({
-        yearGt: yearGt || undefined,
-        yearLt: yearLt || undefined,
+        this.filterMovies.emit({
+          yearGt: yearGt || undefined,
+          yearLt: yearLt || undefined,
+          ratingGt: ratingGt || undefined,
+          ratingLt: ratingLt || undefined,
+          runtimeGt: runtimeGt || undefined,
+          runtimeLt: runtimeLt || undefined,
+          votesGt: votesGt || undefined,
+          votesLt: votesLt || undefined,
+        });
       });
-    });
-  }
-
-  onSubmit() {
-    console.log(this.formModel.value);
-    this.yearGt = this.formModel?.get('year.yearGt')?.value;
   }
 }

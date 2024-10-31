@@ -11,7 +11,7 @@ import { Movie, FiltrationParams } from 'src/app/types/movies';
 export class MoviesListComponent implements OnInit {
   movies: Movie[] = [];
   length: number = 0;
-  pageIndex: number = 1;
+  pageIndex: number = 0;
   pageSize: number = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageEvent: PageEvent | null = null;
@@ -38,7 +38,7 @@ export class MoviesListComponent implements OnInit {
   getMovies() {
     this.movieService
       .getFiltered(
-        this.pageIndex ? this.pageIndex + 1 : 1,
+        this.pageIndex + 1,
         this.pageSize,
         this.filtrationParams
       )
