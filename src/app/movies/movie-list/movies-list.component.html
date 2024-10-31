@@ -1,4 +1,4 @@
-<app-movie-filters-form></app-movie-filters-form>
+<app-movie-filters-form (filterMovies)="setFiltrationParams($event)"></app-movie-filters-form>
 
 <app-movie
   *ngFor="let movie of movies" class="movie"
@@ -10,7 +10,7 @@
   [length]="length"
   [pageSize]="pageSize"
   [pageSizeOptions]="pageSizeOptions"
-  (page)="pageEvent = getMovies($event)"
+  (page)="setPageParams($event)"
   aria-label="Select page"
 >
 </mat-paginator>

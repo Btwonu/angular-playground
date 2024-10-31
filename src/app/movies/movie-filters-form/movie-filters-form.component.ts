@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MovieService } from 'src/app/shared/services/movie/movie.service';
+import { FiltrationParams } from 'src/app/types/movies';
 
 @Component({
   selector: 'app-movie-filters-form',
@@ -7,9 +9,12 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./movie-filters-form.component.scss'],
 })
 export class MovieFiltersFormComponent implements OnInit {
-  formModel: FormGroup;
+  @Output() filterMovies = new EventEmitter<Partial<FiltrationParams>>();
 
-  constructor() {
+  formModel: FormGroup;
+  yearGt: string;
+
+  constructor(private movieService: MovieService) {
     this.formModel = new FormGroup({
       year: new FormGroup({
         yearGt: new FormControl(''),
@@ -17,13 +22,25 @@ export class MovieFiltersFormComponent implements OnInit {
       }),
       username: new FormControl(''),
     });
+
+    this.yearGt = this.formModel?.get('year.yearGt')?.value;
   }
 
   ngOnInit(): void {
-    console.log(this.formModel);
+    this.formModel.valueChanges.subscribe((value) => {
+      const {
+        year: { yearGt, yearLt },
+      } = value;
+
+      this.filterMovies.emit({
+        yearGt: yearGt || undefined,
+        yearLt: yearLt || undefined,
+      });
+    });
   }
 
   onSubmit() {
     console.log(this.formModel.value);
+    this.yearGt = this.formModel?.get('year.yearGt')?.value;
   }
 }

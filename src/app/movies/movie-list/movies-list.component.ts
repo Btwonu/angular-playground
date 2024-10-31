@@ -15,35 +15,42 @@ export class MoviesListComponent implements OnInit {
   pageSize: number = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageEvent: PageEvent | null = null;
+  filtrationParams: Partial<FiltrationParams> = {};
 
   constructor(private movieService: MovieService) {}
 
-  getMovies(event: PageEvent | null) {
+  setPageParams(event: PageEvent | null) {
     const { length, pageIndex, pageSize, previousPageIndex } = event || {};
 
+    this.pageEvent = event;
+    this.pageIndex = pageIndex || 0;
+    this.pageSize = pageSize || 10;
+
+    this.getMovies();
+  }
+
+  setFiltrationParams(params: Partial<FiltrationParams>) {
+    this.filtrationParams = params;
+
+    this.getMovies();
+  }
+
+  getMovies() {
     this.movieService
-      .getFiltered(pageIndex ? pageIndex + 1 : 1, pageSize, {
-        yearGt: 2000,
-        yearLt: 2010,
-        ratingGt: 8,
-        ratingLt: 10,
-        runtimeGt: 90,
-        runtimeLt: 150,
-        votesGt: 10000,
-        votesLt: 20000,
-        genres: ['Adventure', 'Comedy'],
-      })
+      .getFiltered(
+        this.pageIndex ? this.pageIndex + 1 : 1,
+        this.pageSize,
+        this.filtrationParams
+      )
       .subscribe((res) => {
         this.movies = res.data;
         this.length = res.total_count;
         this.pageSize = res.per_page;
         this.pageSizeOptions = [res.per_page];
       });
-
-    return event;
   }
 
   ngOnInit(): void {
-    this.getMovies(null);
+    this.getMovies();
   }
 }
