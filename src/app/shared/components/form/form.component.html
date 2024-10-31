@@ -1,11 +1,10 @@
 <form #addToWatchlistForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
   <div>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" *ngIf="watchlists?.length">
       <mat-label>Watchlist</mat-label>
 
       <mat-select
         #watchlist="ngModel"
-        *ngIf="watchlists.length"
         name="watchlist"
         id="watchlist"
         [(ngModel)]="currentWatchlist"
@@ -21,12 +20,11 @@
   </div>
 
   <div>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" *ngIf="statuses?.length">
       <mat-label>Status</mat-label>
 
       <mat-select
         #status="ngModel"
-        *ngIf="statuses.length"
         name="status"
         id="status"
         [(ngModel)]="currentStatus"
@@ -42,11 +40,10 @@
   </div>
 
   <div>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" *ngIf="ratings?.length">
       <mat-label>Rating</mat-label>
 
       <mat-select
-        *ngIf="ratings.length"
         name="rating"
         id="rating"
         [(ngModel)]="currentRating"
