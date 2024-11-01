@@ -32,6 +32,9 @@ export class MoviesListComponent implements OnInit {
   setFiltrationParams(params: Partial<FiltrationParams>) {
     this.filtrationParams = params;
 
+    this.pageEvent = null;
+    this.pageIndex = 0;
+
     this.getMovies();
   }
 
