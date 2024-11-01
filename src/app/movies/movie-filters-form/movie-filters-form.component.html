@@ -69,13 +69,13 @@
     />
   </fieldset>
 
-  <fieldset *ngIf="genres?.length">
+  <fieldset *ngIf="genres?.length" formArrayName="genres">
     <legend>Genres</legend>
 
     <div *ngFor="let genre of genres; let i = index">
       <label [for]="getGenreId(genre)">{{ genre.name }}</label>
 
-      <input type="checkbox" [id]="getGenreId(genre)" [formControlName]="i" />
+      <input type="checkbox" [id]="getGenreId(genre)" [formControlName]="genre.name" />
     </div>
   </fieldset>
 </form>

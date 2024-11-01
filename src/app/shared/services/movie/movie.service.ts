@@ -61,7 +61,6 @@ export class MovieService {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams,
-      queryParamsHandling: 'merge',
     });
 
     return this.http.get<MoviesResponse>(url.toString());

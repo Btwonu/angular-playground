@@ -34,23 +34,23 @@ export class MovieFiltersFormComponent implements OnInit {
         votesGt: new FormControl(''),
         votesLt: new FormControl(''),
       }),
-      genres: new FormArray([]),
+      genres: new FormGroup({}),
     });
 
     this.yearGt = this.formModel?.get('year.yearGt')?.value;
+    this.movieService.getGenres().subscribe((res) => {
+      this.genres = res.data;
+
+      const genresGroup = this.formModel.controls['genres'] as FormGroup;
+
+      for (const genre of this.genres) {
+        genresGroup.addControl(genre.name, new FormControl(false));
+      }
+    });
   }
 
   ngOnInit(): void {
     this.onFormChange();
-
-    this.movieService.getGenres().subscribe((res) => {
-      this.genres = res.data;
-      const genresArray = this.formModel.get('genres') as FormArray;
-
-      for (const genre of this.genres) {
-        genresArray.push(new FormControl(false));
-      }
-    });
   }
 
   onFormChange() {
@@ -65,7 +65,7 @@ export class MovieFiltersFormComponent implements OnInit {
           genres,
         } = value;
 
-        console.log({genres});
+        const truthyGenres = Object.keys(genres).filter((key) => genres[key]);
 
         this.filterMovies.emit({
           yearGt: yearGt || undefined,
@@ -76,6 +76,7 @@ export class MovieFiltersFormComponent implements OnInit {
           runtimeLt: runtimeLt || undefined,
           votesGt: votesGt || undefined,
           votesLt: votesLt || undefined,
+          genres: truthyGenres.length ? truthyGenres : undefined,
         });
       });
   }
