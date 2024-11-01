@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { MovieService } from 'src/app/shared/services/movie/movie.service';
 import { TmdbService } from 'src/app/shared/services/tmdb/tmdb.service';
 import { Movie } from 'src/app/types/movies';
+import { environment } from 'src/environments/environment';
+
+const { tmdbImageUrl } = environment;
 
 @Component({
   selector: 'app-movie-detail',
@@ -12,16 +15,18 @@ import { Movie } from 'src/app/types/movies';
 export class MovieDetailComponent implements OnInit {
   movie: Movie | null = null;
   description: string = '';
+  imageUrl: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService,
     private tmdbService: TmdbService
   ) {
-    this.tmdbService.getMovieByImdbId().subscribe((res) => {
+    this.tmdbService.getMovieByImdbId('tt0137523').subscribe((res) => {
       const movie = res['movie_results'][0];
 
       this.description = movie.overview;
+      this.imageUrl = `${tmdbImageUrl}${movie.poster_path}`;
     });
   }
 
