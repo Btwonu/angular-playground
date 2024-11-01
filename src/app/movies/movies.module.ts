@@ -13,10 +13,12 @@ import { FormComponent } from '../shared/components/form/form.component';
 import { DialogComponent } from '../shared/components/dialog/dialog.component';
 import { MovieFiltersFormComponent } from './movie-filters-form/movie-filters-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TmdbService } from '../shared/services/tmdb/tmdb.service';
 
 console.log('movies module');
 
 @NgModule({
+  providers: [TmdbService],
   declarations: [
     MoviesComponent,
     MoviesListComponent,
