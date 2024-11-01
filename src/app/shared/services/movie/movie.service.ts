@@ -31,11 +31,15 @@ export class MovieService {
     const url = new URL('https://movies.api/list');
     const queryParams: Partial<FiltrationParams> = {};
 
-    url.searchParams.append('page', encodeURIComponent(page.toString()));
-    url.searchParams.append('limit', encodeURIComponent(limit.toString()));
+    if (page > 1) {
+      url.searchParams.append('page', encodeURIComponent(page.toString()));
+      queryParams['page'] = page;
+    }
 
-    queryParams['page'] = page;
-    queryParams['limit'] = limit;
+    if (limit !== 10) {
+      url.searchParams.append('limit', encodeURIComponent(limit.toString()));
+      queryParams['limit'] = limit;
+    }
 
     for (const param of Object.keys(data)) {
       const value = data[param];
@@ -50,8 +54,13 @@ export class MovieService {
             .map((v) => encodeURIComponent(v))
             .join(',');
         } else {
-          url.searchParams.append(convertCamelToSnake(param), encodeURIComponent(value!.toString()));
-          queryParams[convertCamelToSnake(param)] = encodeURIComponent(value!.toString());
+          url.searchParams.append(
+            convertCamelToSnake(param),
+            encodeURIComponent(value!.toString())
+          );
+          queryParams[convertCamelToSnake(param)] = encodeURIComponent(
+            value!.toString()
+          );
         }
       }
     }
