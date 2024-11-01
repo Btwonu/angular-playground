@@ -8,6 +8,21 @@ export interface Movie {
   genres: string[];
 }
 
+export interface MoviesResponse {
+  data: Movie[];
+  total_count: number;
+  page: number;
+  per_page: number;
+  page_count: number;
+  links: {
+    self: string | null;
+    prev: string | null;
+    next: string | null;
+    first: string | null;
+    last: string | null;
+  };
+}
+
 export interface FiltrationParams {
   [index: string]: number | string | string[];
   yearGt: number;
@@ -19,4 +34,13 @@ export interface FiltrationParams {
   votesGt: number;
   votesLt: number;
   genres: string[];
+}
+
+export interface Genre {
+  id: string;
+  name: string;
+}
+
+export interface GenresResponse {
+  data: Genre[]
 }

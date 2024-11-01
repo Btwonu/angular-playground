@@ -3,39 +3,79 @@
     <legend>Year</legend>
 
     <label for="year_gt">Year GT</label>
-    <input type="number" name="year_gt" id="year_gt" formControlName="yearGt">
+    <input type="number" name="year_gt" id="year_gt" formControlName="yearGt" />
 
     <label for="year_gt">Year LT</label>
-    <input type="number" name="year_lt" id="year_lt" formControlName="yearLt">
+    <input type="number" name="year_lt" id="year_lt" formControlName="yearLt" />
   </fieldset>
 
   <fieldset formGroupName="rating">
     <legend>Rating</legend>
 
     <label for="rating_gt">Rating GT</label>
-    <input type="number" name="rating_gt" id="rating_gt" formControlName="ratingGt">
+    <input
+      type="number"
+      name="rating_gt"
+      id="rating_gt"
+      formControlName="ratingGt"
+    />
 
     <label for="rating_gt">Rating LT</label>
-    <input type="number" name="rating_lt" id="rating_lt" formControlName="ratingLt">
+    <input
+      type="number"
+      name="rating_lt"
+      id="rating_lt"
+      formControlName="ratingLt"
+    />
   </fieldset>
 
   <fieldset formGroupName="runtime">
     <legend>Runtime</legend>
 
     <label for="runtime_gt">Runtime GT</label>
-    <input type="number" name="runtime_gt" id="runtime_gt" formControlName="runtimeGt">
+    <input
+      type="number"
+      name="runtime_gt"
+      id="runtime_gt"
+      formControlName="runtimeGt"
+    />
 
     <label for="runtime_gt">Runtime LT</label>
-    <input type="number" name="runtime_lt" id="runtime_lt" formControlName="runtimeLt">
+    <input
+      type="number"
+      name="runtime_lt"
+      id="runtime_lt"
+      formControlName="runtimeLt"
+    />
   </fieldset>
 
   <fieldset formGroupName="votes">
     <legend>Votes</legend>
 
     <label for="votes_gt">Votes GT</label>
-    <input type="number" name="votes_gt" id="votes_gt" formControlName="votesGt">
+    <input
+      type="number"
+      name="votes_gt"
+      id="votes_gt"
+      formControlName="votesGt"
+    />
 
     <label for="votes_gt">Votes LT</label>
-    <input type="number" name="votes_lt" id="votes_lt" formControlName="votesLt">
+    <input
+      type="number"
+      name="votes_lt"
+      id="votes_lt"
+      formControlName="votesLt"
+    />
+  </fieldset>
+
+  <fieldset *ngIf="genres?.length">
+    <legend>Genres</legend>
+
+    <div *ngFor="let genre of genres; let i = index">
+      <label [for]="getGenreId(genre)">{{ genre.name }}</label>
+
+      <input type="checkbox" [id]="getGenreId(genre)" [formControlName]="i" />
+    </div>
   </fieldset>
 </form>

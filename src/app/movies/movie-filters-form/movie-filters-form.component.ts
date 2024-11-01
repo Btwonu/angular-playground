@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, pipe } from 'rxjs';
 import { MovieService } from 'src/app/shared/services/movie/movie.service';
-import { FiltrationParams } from 'src/app/types/movies';
+import { FiltrationParams, Genre } from 'src/app/types/movies';
 
 @Component({
   selector: 'app-movie-filters-form',
@@ -14,6 +14,7 @@ export class MovieFiltersFormComponent implements OnInit {
 
   formModel: FormGroup;
   yearGt: string;
+  genres: Genre[] = [];
 
   constructor(private movieService: MovieService) {
     this.formModel = new FormGroup({
@@ -33,12 +34,26 @@ export class MovieFiltersFormComponent implements OnInit {
         votesGt: new FormControl(''),
         votesLt: new FormControl(''),
       }),
+      genres: new FormArray([]),
     });
 
     this.yearGt = this.formModel?.get('year.yearGt')?.value;
   }
 
   ngOnInit(): void {
+    this.onFormChange();
+
+    this.movieService.getGenres().subscribe((res) => {
+      this.genres = res.data;
+      const genresArray = this.formModel.get('genres') as FormArray;
+
+      for (const genre of this.genres) {
+        genresArray.push(new FormControl(false));
+      }
+    });
+  }
+
+  onFormChange() {
     this.formModel.valueChanges
       .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe((value) => {
@@ -47,7 +62,10 @@ export class MovieFiltersFormComponent implements OnInit {
           rating: { ratingGt, ratingLt },
           runtime: { runtimeGt, runtimeLt },
           votes: { votesGt, votesLt },
+          genres,
         } = value;
+
+        console.log({genres});
 
         this.filterMovies.emit({
           yearGt: yearGt || undefined,
@@ -60,5 +78,9 @@ export class MovieFiltersFormComponent implements OnInit {
           votesLt: votesLt || undefined,
         });
       });
+  }
+
+  getGenreId(genre: Genre) {
+    return `genre-${genre.id}`;
   }
 }
