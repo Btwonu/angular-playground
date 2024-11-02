@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { GenresResponse, Movie, MoviesResponse } from 'src/app/types/movies';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FiltrationParams } from 'src/app/types/movies';
@@ -24,6 +24,8 @@ export class MovieService {
   tmdbBaseUrl = tmdbBase;
   moviesUrl = `${base}${movies}`;
   genresUrl = `${base}${genres}`;
+
+  private cache = new Map<number, any>();
 
   constructor(
     private http: HttpClient,
@@ -96,6 +98,12 @@ export class MovieService {
   }
 
   getTrailer(tmdbId: number): Observable<TmdbVideosResponse> {
-    return this.http.get<TmdbVideosResponse>(`${this.tmdbBaseUrl}/movie/${tmdbId}/videos`);
+    if (this.cache.has(tmdbId)) {
+      return of(this.cache.get(tmdbId));
+    }
+
+    return this.http
+      .get<TmdbVideosResponse>(`${this.tmdbBaseUrl}/movie/${tmdbId}/videos`)
+      .pipe(tap((data) => this.cache.set(tmdbId, data)));
   }
 }
