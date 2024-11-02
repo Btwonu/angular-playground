@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { TmdbInterceptor } from './shared/services/tmdb/tmdb-interceptor';
+import { RangeSliderComponent } from './shared/components/range-slider/range-slider.component';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],

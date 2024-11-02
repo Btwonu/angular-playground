@@ -15,6 +15,8 @@ import { MovieFiltersFormComponent } from './movie-filters-form/movie-filters-fo
 import { ReactiveFormsModule } from '@angular/forms';
 import { TmdbService } from '../shared/services/tmdb/tmdb.service';
 import { MatSliderModule } from '@angular/material/slider';
+import { NouisliderModule } from 'ng2-nouislider';
+import { RangeSliderComponent } from '../shared/components/range-slider/range-slider.component';
 
 console.log('movies module');
 
@@ -37,6 +39,8 @@ console.log('movies module');
     DialogComponent,
     ReactiveFormsModule,
     MatSliderModule,
+    NouisliderModule,
+    RangeSliderComponent,
   ],
 })
 export class MoviesModule {}
