@@ -1,18 +1,75 @@
-<header>
-  <nav class="nav">
-    <ul>
-      <li>
-        <a routerLink="/movies" routerLinkActive="active-link">Movies</a>
-      </li>
+<div class="wrapper">
+  <header class="header">
+    <nav class="nav">
+      <ul>
+        <li>
+          <a routerLink="/movies" routerLinkActive="active-link">Movies</a>
+        </li>
 
-      <li>
-        <a routerLink="/watchlist" routerLinkActive="active-link">Watchlist</a>
-      </li>
-    </ul>
-  </nav><!-- /.nav -->
-</header>
+        <li>
+          <a routerLink="/series" routerLinkActive="active-link">Series</a>
+        </li>
+      </ul>
+    </nav><!-- /.nav -->
+  </header>
 
-<main>
-  <router-outlet></router-outlet>
-</main>
+  <div class="wrapper__inner">
+    <aside class="wrapper__aside">
+      <div class="sidebar">
+        <div class="sidebar__inner">
+          <nav>
+            <ul>
+              <li>
+                <a routerLink="/" routerLinkActive="active-link">Home</a>
+              </li>
+
+              <li>
+                <a routerLink="/watchlist" routerLinkActive="active-link">Watchlist</a>
+              </li>
+
+              <li>
+                <a routerLink="/settings" routerLinkActive="active-link">Settings</a>
+              </li>
+
+              <li>
+                <a routerLink="/logout" routerLinkActive="active-link">Logout</a>
+              </li>
+            </ul>
+          </nav>
+        </div><!-- /.sidebar__inner -->
+      </div><!-- /.sidebar -->
+    </aside><!-- /.wrapper__aside -->
+
+    <div class="wrapper__body">
+      <main class="main">
+        <div class="main__body">
+          <router-outlet></router-outlet>
+        </div><!-- /.main__body -->
+
+        <aside class="main__aside">
+          <div class="widgets">
+            <div class="widgets__inner">
+              <nav>
+                <ul>
+                  <li>
+                    <a href="">Link</a>
+                  </li>
+                  <li>
+                    <a href="">Link</a>
+                  </li>
+                  <li>
+                    <a href="">Link</a>
+                  </li>
+                </ul>
+              </nav>
+            </div><!-- /.widgets__inner -->
+          </div><!-- /.widgets -->
+        </aside><!-- /.main__aside -->
+      </main>
+    </div><!-- /.wrapper__body -->
+  </div><!-- /.wrapper__inner -->
+</div><!-- /.wrapper -->
+
+
+
 
