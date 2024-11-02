@@ -4,6 +4,11 @@ import { Observable } from 'rxjs';
 import { GenresResponse, Movie, MoviesResponse } from 'src/app/types/movies';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FiltrationParams } from 'src/app/types/movies';
+import { environment } from 'src/environments/environment';
+
+const {
+  api: { base, movies, genres },
+} = environment;
 
 function convertCamelToSnake(str: string) {
   return str.replace(/([a-zA-Z])(?=[A-Z])/g, '$1_').toLowerCase();
@@ -13,6 +18,10 @@ function convertCamelToSnake(str: string) {
   providedIn: 'root',
 })
 export class MovieService {
+  baseUrl = base;
+  moviesUrl = `${base}${movies}`;
+  genresUrl = `${base}${genres}`;
+
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -28,7 +37,7 @@ export class MovieService {
     limit: number = 10,
     data: Partial<FiltrationParams>
   ): Observable<MoviesResponse> {
-    const url = new URL('https://movies.api/list');
+    const url = new URL(this.moviesUrl);
     const queryParams: Partial<FiltrationParams> = {};
 
     if (page > 1) {
@@ -76,10 +85,10 @@ export class MovieService {
   }
 
   getOne(movieId: string): Observable<Movie> {
-    return this.http.get<Movie>(`https://movies.api/${movieId}`);
+    return this.http.get<Movie>(`${this.moviesUrl}${movieId}`);
   }
 
   getGenres(): Observable<GenresResponse> {
-    return this.http.get<GenresResponse>('https://movies.api/genres');
+    return this.http.get<GenresResponse>(this.genresUrl);
   }
 }
