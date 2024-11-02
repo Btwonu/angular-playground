@@ -3,18 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of, tap } from 'rxjs';
 import { GenresResponse, Movie, MoviesResponse } from 'src/app/types/movies';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FiltrationParams } from 'src/app/types/movies';
+import { FiltrationParams, FiltrationValidationResponse } from 'src/app/types/movies';
 import { TmdbVideosResponse } from 'src/app/types/tmdb';
 import { environment } from 'src/environments/environment';
+import { convertCamelToSnake } from 'src/app/shared/utils/functions';
 
 const {
   tmdb: { base: tmdbBase },
-  api: { base, movies, genres },
+  api: { base, movies, genres, filtrationValidation },
 } = environment;
-
-function convertCamelToSnake(str: string) {
-  return str.replace(/([a-zA-Z])(?=[A-Z])/g, '$1_').toLowerCase();
-}
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +21,7 @@ export class MovieService {
   tmdbBaseUrl = tmdbBase;
   moviesUrl = `${base}${movies}`;
   genresUrl = `${base}${genres}`;
+  filtrationValidationUrl = `${base}${filtrationValidation}`;
 
   private cache = new Map<number, any>();
 
@@ -105,5 +103,9 @@ export class MovieService {
     return this.http
       .get<TmdbVideosResponse>(`${this.tmdbBaseUrl}/movie/${tmdbId}/videos`)
       .pipe(tap((data) => this.cache.set(tmdbId, data)));
+  }
+
+  getFiltrationValidationValues(): Observable<FiltrationValidationResponse> {
+    return this.http.get<FiltrationValidationResponse>(this.filtrationValidationUrl);
   }
 }

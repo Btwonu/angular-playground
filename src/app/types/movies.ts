@@ -42,5 +42,26 @@ export interface Genre {
 }
 
 export interface GenresResponse {
-  data: Genre[]
+  data: Genre[];
+}
+
+export interface FiltrationValidationResponse {
+  filters: {
+    year: {
+      min: number;
+      max: number;
+    };
+    rating: {
+      min: number;
+      max: number;
+    };
+    runtime: {
+      min: number;
+      max: number;
+    };
+    votes: {
+      min: number;
+      max: number;
+    };
+  };
 }

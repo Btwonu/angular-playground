@@ -1,8 +1,15 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, pipe } from 'rxjs';
 import { MovieService } from 'src/app/shared/services/movie/movie.service';
-import { FiltrationParams, Genre } from 'src/app/types/movies';
+import {
+  FiltrationParams,
+  Genre,
+  FiltrationValidationResponse,
+} from 'src/app/types/movies';
+
+Validators.min(0);
+Validators.max(0);
 
 @Component({
   selector: 'app-movie-filters-form',
@@ -12,32 +19,74 @@ import { FiltrationParams, Genre } from 'src/app/types/movies';
 export class MovieFiltersFormComponent implements OnInit {
   @Output() filterMovies = new EventEmitter<Partial<FiltrationParams>>();
 
-  formModel: FormGroup;
-  yearGt: string;
+  formModel!: FormGroup;
   genres: Genre[] = [];
 
   constructor(private movieService: MovieService) {
-    this.formModel = new FormGroup({
+    this.movieService.getFiltrationValidationValues().subscribe({
+      next: (res) => {
+        res.filters.year.min;
+        res.filters.year.max;
+
+        this.formModel = this.getForm(res);
+        this.addGenresToForm();
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      complete: () => {},
+    });
+  }
+
+  getForm(validations: FiltrationValidationResponse) {
+    const { filters } = validations;
+
+    return new FormGroup({
       year: new FormGroup({
-        yearGt: new FormControl(''),
-        yearLt: new FormControl(''),
+        yearGt: new FormControl('', [
+          Validators.min(filters.year.min),
+          Validators.max(filters.year.max),
+        ]),
+        yearLt: new FormControl('', [
+          Validators.min(filters.year.min),
+          Validators.max(filters.year.max),
+        ]),
       }),
       rating: new FormGroup({
-        ratingGt: new FormControl(''),
-        ratingLt: new FormControl(''),
+        ratingGt: new FormControl('', [
+          Validators.min(filters.rating.min),
+          Validators.max(filters.rating.max),
+        ]),
+        ratingLt: new FormControl('', [
+          Validators.min(filters.rating.min),
+          Validators.max(filters.rating.max),
+        ]),
       }),
       runtime: new FormGroup({
-        runtimeGt: new FormControl(''),
-        runtimeLt: new FormControl(''),
+        runtimeGt: new FormControl('', [
+          Validators.min(filters.runtime.min),
+          Validators.max(filters.runtime.max),
+        ]),
+        runtimeLt: new FormControl('', [
+          Validators.min(filters.runtime.min),
+          Validators.max(filters.runtime.max),
+        ]),
       }),
       votes: new FormGroup({
-        votesGt: new FormControl(''),
-        votesLt: new FormControl(''),
+        votesGt: new FormControl('', [
+          Validators.min(filters.votes.min),
+          Validators.max(filters.votes.max),
+        ]),
+        votesLt: new FormControl('', [
+          Validators.min(filters.votes.min),
+          Validators.max(filters.votes.max),
+        ]),
       }),
       genres: new FormGroup({}),
     });
+  }
 
-    this.yearGt = this.formModel?.get('year.yearGt')?.value;
+  addGenresToForm() {
     this.movieService.getGenres().subscribe((res) => {
       this.genres = res.data;
 
@@ -57,6 +106,11 @@ export class MovieFiltersFormComponent implements OnInit {
     this.formModel.valueChanges
       .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe((value) => {
+
+        Object.keys(this.formModel.controls).forEach((key) => {
+          console.log(`${key} is valid:`, this.formModel.controls[key].valid);
+        });
+
         const {
           year: { yearGt, yearLt },
           rating: { ratingGt, ratingLt },
