@@ -23,6 +23,7 @@ export class MovieDetailComponent implements OnInit {
   imageUrl = '';
   youtubeEmbedUrl = embed;
   youtubeTrailerEmbedUrl: SafeResourceUrl = '';
+  isLoading = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -57,23 +58,34 @@ export class MovieDetailComponent implements OnInit {
   }
 
   showTrailer() {
-    this.movieService.getTrailer(this.tmdbId).subscribe((res) => {
-      const youtubeVideos = res.results?.filter(
-        (video) => video.site === 'YouTube'
-      );
+    if (this.isLoading) return;
 
-      if (youtubeVideos?.length) {
-        const { key } = youtubeVideos[0];
+    this.isLoading = true;
+    this.movieService.getTrailer(this.tmdbId).subscribe({
+      next: (res) => {
+        const youtubeVideos = res.results?.filter(
+          (video) => video.site === 'YouTube'
+        );
 
-        if (!this.isValidYouTubeKey(key)) {
-          throw new Error('Invalid YouTube key');
+        if (youtubeVideos?.length) {
+          const { key } = youtubeVideos[0];
+
+          if (!this.isValidYouTubeKey(key)) {
+            throw new Error('Invalid YouTube key');
+          }
+
+          this.youtubeTrailerEmbedUrl =
+            this.domSanitizer.bypassSecurityTrustResourceUrl(
+              `${this.youtubeEmbedUrl}/${key}`
+            );
         }
-
-        this.youtubeTrailerEmbedUrl =
-          this.domSanitizer.bypassSecurityTrustResourceUrl(
-            `${this.youtubeEmbedUrl}/${key}`
-          );
-      }
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        this.isLoading = false;
+      },
     });
   }
 }

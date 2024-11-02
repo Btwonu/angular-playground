@@ -24,7 +24,11 @@
 
 <p>{{ description }}</p>
 
-<button (click)="showTrailer()">Show Trailer</button>
+<button (click)="showTrailer()" [disabled]="isLoading">Show Trailer</button>
+
+<ng-container *ngIf="isLoading">
+  <p>Loading...</p>
+</ng-container>
 
 <ng-container *ngIf="youtubeTrailerEmbedUrl">
   <iframe
