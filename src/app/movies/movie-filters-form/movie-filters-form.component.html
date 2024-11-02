@@ -1,74 +1,120 @@
 <h2>Movie Filters</h2>
 
-<form [formGroup]="formModel">
+<form *ngIf="formModel" [formGroup]="formModel">
   <fieldset formGroupName="year">
     <legend>Year</legend>
 
-    <label for="year_gt">Year GT</label>
-    <input type="number" name="year_gt" id="year_gt" formControlName="yearGt" />
+    <label for="year_gt">From year</label>
 
-    <label for="year_gt">Year LT</label>
-    <input type="number" name="year_lt" id="year_lt" formControlName="yearLt" />
-  </fieldset>
+    <span>{{ yearGt }}</span>
 
-  <fieldset formGroupName="rating">
-    <legend>Rating</legend>
+    <mat-slider
+      name="year_gt"
+      id="year_gt"
+      thumbLabel
+      [min]="year.min"
+      [max]="yearLt - 1 || year.max"
+      step="1"
+      formControlName="yearGt"
+    ></mat-slider>
 
-    <label for="rating_gt">Rating GT</label>
-    <input
-      type="number"
-      name="rating_gt"
-      id="rating_gt"
-      formControlName="ratingGt"
-    />
+    <label for="year_gt">To year</label>
 
-    <label for="rating_gt">Rating LT</label>
-    <input
-      type="number"
-      name="rating_lt"
-      id="rating_lt"
-      formControlName="ratingLt"
-    />
+    <span>{{ yearLt }}</span>
+
+    <mat-slider
+      name="year_lt"
+      id="year_lt"
+      thumbLabel
+      [min]="yearGt + 1 || year.min"
+      [max]="year.max"
+      step="1"
+      formControlName="yearLt"
+    ></mat-slider>
   </fieldset>
 
   <fieldset formGroupName="runtime">
     <legend>Runtime</legend>
 
     <label for="runtime_gt">Runtime GT</label>
-    <input
+
+    <mat-slider
       type="number"
       name="runtime_gt"
-      id="runtime_gt"
+      thumbLabel
+      [min]="runtime.min"
+      [max]="runtime.max"
+      step="1"
       formControlName="runtimeGt"
-    />
+    ></mat-slider>
 
     <label for="runtime_gt">Runtime LT</label>
-    <input
+
+    <mat-slider
       type="number"
       name="runtime_lt"
-      id="runtime_lt"
+      thumbLabel
+      [min]="runtimeGt + 1 || runtime.min"
+      [max]="runtime.max"
+      step="1"
       formControlName="runtimeLt"
-    />
+    ></mat-slider>
+  </fieldset>
+
+  <fieldset formGroupName="rating">
+    <legend>Rating</legend>
+
+    <label for="rating_gt">Rating GT</label>
+
+    <mat-slider
+      name="rating_gt"
+      id="rating_gt"
+      thumbLabel
+      [min]="rating.min"
+      [max]="rating.max"
+      step="1"
+      formControlName="ratingGt"
+    ></mat-slider>
+
+    <label for="rating_gt">Rating LT</label>
+
+    <mat-slider
+      name="rating_lt"
+      id="rating_lt"
+      thumbLabel
+      [min]="ratingGt + 1 || rating.min"
+      [max]="rating.max"
+      step="1"
+      formControlName="ratingLt"
+    ></mat-slider>
   </fieldset>
 
   <fieldset formGroupName="votes">
     <legend>Votes</legend>
 
     <label for="votes_gt">Votes GT</label>
-    <input
+
+    <mat-slider
       type="number"
       name="votes_gt"
-      id="votes_gt"
+      thumbLabel
+      [min]="votes.min"
+      [max]="votes.max"
+      step="1"
       formControlName="votesGt"
-    />
+    ></mat-slider>
 
     <label for="votes_gt">Votes LT</label>
-    <input
-      type="number"
+
+    <mat-slider
       name="votes_lt"
       id="votes_lt"
+      thumbLabel
+      [min]="votesGt + 1 || votes.min"
+      [max]="votes.max"
+      step="1"
       formControlName="votesLt"
-    />
+    ></mat-slider>
   </fieldset>
 
   <fieldset *ngIf="genres?.length" formArrayName="genres">
@@ -77,7 +123,11 @@
     <div *ngFor="let genre of genres; let i = index">
       <label [for]="getGenreId(genre)">{{ genre.name }}</label>
 
-      <input type="checkbox" [id]="getGenreId(genre)" [formControlName]="genre.name" />
+      <input
+        type="checkbox"
+        [id]="getGenreId(genre)"
+        [formControlName]="genre.name"
+      />
     </div>
   </fieldset>
 </form>

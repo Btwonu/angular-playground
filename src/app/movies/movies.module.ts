@@ -14,6 +14,7 @@ import { DialogComponent } from '../shared/components/dialog/dialog.component';
 import { MovieFiltersFormComponent } from './movie-filters-form/movie-filters-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TmdbService } from '../shared/services/tmdb/tmdb.service';
+import { MatSliderModule } from '@angular/material/slider';
 
 console.log('movies module');
 
@@ -35,6 +36,7 @@ console.log('movies module');
     FormComponent,
     DialogComponent,
     ReactiveFormsModule,
+    MatSliderModule,
   ],
 })
 export class MoviesModule {}
