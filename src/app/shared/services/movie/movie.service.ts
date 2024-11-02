@@ -4,9 +4,11 @@ import { Observable } from 'rxjs';
 import { GenresResponse, Movie, MoviesResponse } from 'src/app/types/movies';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FiltrationParams } from 'src/app/types/movies';
+import { TmdbVideosResponse } from 'src/app/types/tmdb';
 import { environment } from 'src/environments/environment';
 
 const {
+  tmdb: { base: tmdbBase },
   api: { base, movies, genres },
 } = environment;
 
@@ -19,6 +21,7 @@ function convertCamelToSnake(str: string) {
 })
 export class MovieService {
   baseUrl = base;
+  tmdbBaseUrl = tmdbBase;
   moviesUrl = `${base}${movies}`;
   genresUrl = `${base}${genres}`;
 
@@ -85,10 +88,14 @@ export class MovieService {
   }
 
   getOne(movieId: string): Observable<Movie> {
-    return this.http.get<Movie>(`${this.moviesUrl}${movieId}`);
+    return this.http.get<Movie>(`${this.moviesUrl}/${movieId}`);
   }
 
   getGenres(): Observable<GenresResponse> {
     return this.http.get<GenresResponse>(this.genresUrl);
+  }
+
+  getTrailer(tmdbId: number): Observable<TmdbVideosResponse> {
+    return this.http.get<TmdbVideosResponse>(`${this.tmdbBaseUrl}/movie/${tmdbId}/videos`);
   }
 }
