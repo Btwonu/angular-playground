@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'movies',
     loadChildren: () =>
-      import('./movies/movies.module').then((m) => m.MoviesModule),
+      import('./movie/movie.module').then((m) => m.MovieModule),
   },
   {
     path: 'watchlist',

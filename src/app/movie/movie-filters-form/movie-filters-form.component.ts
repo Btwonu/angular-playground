@@ -6,7 +6,7 @@ import {
   FiltrationParams,
   Genre,
   FiltrationValidationResponse,
-} from 'src/app/types/movies';
+} from 'src/app/types/movie';
 
 @Component({
   selector: 'app-movie-filters-form',

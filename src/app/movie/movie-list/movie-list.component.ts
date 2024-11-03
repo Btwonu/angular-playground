@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MovieService } from 'src/app/shared/services/movie/movie.service';
-import { Movie, FiltrationParams } from 'src/app/types/movies';
+import { Movie, FiltrationParams } from 'src/app/types/movie';
 
 @Component({
-  selector: 'app-movies-list',
-  templateUrl: './movies-list.component.html',
-  styleUrls: ['./movies-list.component.scss'],
+  selector: 'app-movie-list',
+  templateUrl: './movie-list.component.html',
+  styleUrls: ['./movie-list.component.scss'],
 })
-export class MoviesListComponent implements OnInit {
+export class MovieListComponent implements OnInit {
   movies: Movie[] = [];
   length: number = 0;
   pageIndex: number = 0;

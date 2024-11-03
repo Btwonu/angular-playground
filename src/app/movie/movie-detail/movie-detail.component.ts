@@ -3,7 +3,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from 'src/app/shared/services/movie/movie.service';
 import { TmdbService } from 'src/app/shared/services/tmdb/tmdb.service';
-import { Movie } from 'src/app/types/movies';
+import { Movie } from 'src/app/types/movie';
 import { environment } from 'src/environments/environment';
 
 const {

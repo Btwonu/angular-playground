@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { WatchlistService } from 'src/app/shared/services/watchlist/watchlist.service';
-import { Movie } from 'src/app/types/movies';
+import { Movie } from 'src/app/types/movie';
 import { NotificationService } from 'src/app/shared/services/notifications/notification.service';
 
 @Component({
