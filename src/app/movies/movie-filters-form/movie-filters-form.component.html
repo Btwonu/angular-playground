@@ -73,19 +73,13 @@
         <mat-panel-title>Genres</mat-panel-title>
       </mat-expansion-panel-header>
 
-      <fieldset *ngIf="genres?.length" formArrayName="genres">
-        <legend>Genres</legend>
-
+      <div *ngIf="genres?.length" formArrayName="genres">
         <div *ngFor="let genre of genres; let i = index">
-          <label [for]="getGenreId(genre)">{{ genre.name }}</label>
-
-          <input
-            type="checkbox"
-            [id]="getGenreId(genre)"
-            [formControlName]="genre.name"
-          />
+          <mat-checkbox [id]="getGenreId(genre)" [formControlName]="genre.name">
+            {{ genre.name }}
+          </mat-checkbox>
         </div>
-      </fieldset>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
 </form>

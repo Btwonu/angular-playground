@@ -73,7 +73,7 @@ export class MovieFiltersFormComponent implements OnInit {
     return new FormGroup({
       year: new FormControl(
         [this.year.min, this.year.max],
-        [Validators.min(this.rating.min), Validators.max(this.rating.max)]
+        [Validators.min(this.year.min), Validators.max(this.year.max)]
       ),
       rating: new FormControl(
         [this.rating.min, this.rating.max],

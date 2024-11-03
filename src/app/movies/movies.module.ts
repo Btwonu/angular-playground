@@ -19,6 +19,7 @@ import { NouisliderModule } from 'ng2-nouislider';
 import { RangeSliderComponent } from '../shared/components/range-slider/range-slider.component';
 import { SidebarComponent } from '../shared/components/sidebar/sidebar.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 console.log('movies module');
 
@@ -41,6 +42,7 @@ console.log('movies module');
     MatSliderModule,
     NouisliderModule,
     MatExpansionModule,
+    MatCheckboxModule,
     RangeSliderComponent,
     SidebarComponent,
     FormComponent,
