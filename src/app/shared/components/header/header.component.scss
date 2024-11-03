@@ -7,10 +7,12 @@
   height: 56px;
   background: #303030;
   border: 2px solid red;
+}
+
+.header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 2rem;
 }
 
 .header .nav ul {

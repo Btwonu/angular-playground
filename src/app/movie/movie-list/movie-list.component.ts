@@ -16,6 +16,7 @@ export class MovieListComponent implements OnInit {
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageEvent: PageEvent | null = null;
   filtrationParams: Partial<FiltrationParams> = {};
+  displayedColumns: string[] = ['movie_id', 'title', 'rating', 'start_year', 'options'];
 
   constructor(private movieService: MovieService) {}
 
@@ -55,5 +56,17 @@ export class MovieListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
+  }
+
+  viewDetails(movie: Movie) {
+    console.log('View details', movie);
+  }
+
+  addToWatchlist(movie: Movie) {
+    console.log('Add to watchlist', movie);
+  }
+
+  rate(movie: Movie) {
+    console.log('Rate movie', movie);
   }
 }

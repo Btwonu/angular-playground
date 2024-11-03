@@ -17,6 +17,11 @@ import { RangeSliderComponent } from '../shared/components/range-slider/range-sl
 import { SidebarComponent } from '../shared/components/sidebar/sidebar.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 console.log('movies module');
 
@@ -38,6 +43,11 @@ console.log('movies module');
     NouisliderModule,
     MatExpansionModule,
     MatCheckboxModule,
+    MatCardModule,
+    MatTableModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
     RangeSliderComponent,
     SidebarComponent,
     FormComponent,
