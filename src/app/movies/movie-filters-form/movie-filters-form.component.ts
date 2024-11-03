@@ -83,6 +83,10 @@ export class MovieFiltersFormComponent implements OnInit {
     });
   }
 
+  getFormControl(name: string) {
+    return this.formModel.get(name) as FormControl;
+  }
+
   addGenresToForm() {
     this.movieService.getGenres().subscribe((res) => {
       this.genres = res.data;
@@ -146,23 +150,5 @@ export class MovieFiltersFormComponent implements OnInit {
 
   getGenreId(genre: Genre) {
     return `genre-${genre.id}`;
-  }
-
-  onChange(event: any) {
-    console.log(event);
-  }
-
-  onMinYearChange(event: any) {
-    const { value } = event.target;
-    this.formModel
-      .get('year')
-      ?.setValue([parseInt(value), this.formModel.get('year')?.value[1]]);
-  }
-
-  onMaxYearChange(event: any) {
-    const { value } = event.target;
-    this.formModel
-      .get('year')
-      ?.setValue([this.formModel.get('year')?.value[0], parseInt(value)]);
   }
 }

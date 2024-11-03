@@ -1,83 +1,49 @@
 <h2>Movie Filters</h2>
 
-<app-range-slider></app-range-slider>
-
 <form *ngIf="formModel" [formGroup]="formModel">
-  <fieldset>
-    <legend>Year</legend>
+  <app-range-slider
+    labelMin="From"
+    labelMax="To"
+    label="Year"
+    idMin="year_gt"
+    idMax="year_lt"
+    [min]="year.min"
+    [max]="year.max"
+    [control]="getFormControl('year')"
+  ></app-range-slider>
 
-    <label for="year_gt">From</label>
+  <app-range-slider
+    labelMin="From"
+    labelMax="To"
+    label="Runtime"
+    idMin="runtime_gt"
+    idMax="runtime_lt"
+    [min]="runtime.min"
+    [max]="runtime.max"
+    [control]="getFormControl('runtime')"
+  ></app-range-slider>
 
-    <input
-      type="number"
-      id="year_gt"
-      [value]="formModel.get('year')?.value[0]"
-      (input)="onMinYearChange($event)"
-      [min]="year.min"
-      [max]="year.max"
-    />
+  <app-range-slider
+    labelMin="From"
+    labelMax="To"
+    label="Rating"
+    idMin="rating_gt"
+    idMax="rating_lt"
+    [min]="rating.min"
+    [max]="rating.max"
+    [control]="getFormControl('rating')"
+  ></app-range-slider>
 
-    <label for="year_lt">To</label>
-
-    <input
-      type="number"
-      id="year_lt"
-      [value]="formModel.get('year')?.value[1]"
-      (input)="onMaxYearChange($event)"
-      [min]="year.min"
-      [max]="year.max"
-    />
-
-    <nouislider
-      [connect]="true"
-      [min]="year.min"
-      [max]="year.max"
-      [step]="1"
-      formControlName="year"
-    ></nouislider>
-  </fieldset>
-
-  <fieldset>
-    <legend>Runtime</legend>
-
-    <label for="runtime_gt">Runtime GT</label>
-
-    <nouislider
-      [connect]="true"
-      [min]="runtime.min"
-      [max]="runtime.max"
-      [step]="1"
-      formControlName="runtime"
-    ></nouislider>
-  </fieldset>
-
-  <fieldset>
-    <legend>Rating</legend>
-
-    <label for="rating_gt">Rating GT</label>
-
-    <nouislider
-      [connect]="true"
-      [min]="rating.min"
-      [max]="rating.max"
-      [step]="1"
-      formControlName="rating"
-    ></nouislider>
-  </fieldset>
-
-  <fieldset>
-    <legend>Votes</legend>
-
-    <label for="votes_gt">Votes GT</label>
-
-    <nouislider
-      [connect]="true"
-      [min]="votes.min"
-      [max]="votes.max"
-      [step]="1"
-      formControlName="votes"
-    ></nouislider>
-  </fieldset>
+  <app-range-slider
+    labelMin="From"
+    labelMax="To"
+    label="Votes"
+    idMin="votes_gt"
+    idMax="votes_lt"
+    [min]="votes.min"
+    [max]="votes.max"
+    [control]="getFormControl('votes')"
+  ></app-range-slider>
 
   <fieldset *ngIf="genres?.length" formArrayName="genres">
     <legend>Genres</legend>

@@ -1,1 +1,33 @@
-<p>TODO: Extract range sliders with inputs here!</p>
+<fieldset>
+  <legend>{{ label }}</legend>
+
+  <label [for]="idMin">{{ labelMin }}</label>
+
+  <input
+    type="number"
+    [id]="idMin"
+    [min]="min"
+    [max]="max"
+    [value]="control.value[0]"
+    (input)="onMinChange($event)"
+  />
+
+  <label [for]="idMax">{{ labelMax }}</label>
+
+  <input
+    type="number"
+    [id]="idMax"
+    [min]="min"
+    [max]="max"
+    [value]="control.value[1]"
+    (input)="onMaxChange($event)"
+  />
+
+  <nouislider
+    [connect]="true"
+    [min]="min"
+    [max]="max"
+    [step]="1"
+    [formControl]="control"
+  ></nouislider>
+</fieldset>
