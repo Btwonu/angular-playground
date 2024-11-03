@@ -1,5 +1,15 @@
 @import "nouislider/dist/nouislider.css";
 
+:root {
+  --header-height: 56px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
@@ -20,6 +30,11 @@ a.active-link {
   color: rgb(200, 63, 200)
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 .notification-error {
   background: rgb(191, 4, 4);
   color: #fff;
@@ -31,22 +46,16 @@ a.active-link {
   color: #fff;
 }
 
+.shell {
+  max-width: 1280px;
+  padding-inline: 30px;
+  margin: 0 auto;
+}
+
 .wrapper {
   position: relative;
   min-height: 100vh;
   padding-top: 56px;
-}
-
-.wrapper__inner {
-  display: flex;
-}
-
-.wrapper__aside {
-  flex: 0 0 max(22vw, 300px);
-}
-
-.wrapper__body {
-  flex-grow: 1;
 }
 
 .header {
@@ -57,10 +66,24 @@ a.active-link {
   width: 100%;
   height: 56px;
   background: #303030;
+  border: 2px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 2rem;
+}
+
+.header .nav ul {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer {
+  border: 2px solid red;
 }
 
 .main {
-  display: flex;
+  width: 100%;
 }
 
 .main__body {

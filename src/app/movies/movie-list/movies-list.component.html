@@ -1,19 +1,35 @@
-<app-movie-filters-form (filterMovies)="setFiltrationParams($event)"></app-movie-filters-form>
+<div class="movies-list">
+  <div class="shell">
+    <h2>Movies</h2>
 
-<h2>Movies</h2>
+    <div class="movies-list__inner">
+      <aside class="movies-list__aside">
+        <app-sidebar>
+          <app-movie-filters-form
+            (filterMovies)="setFiltrationParams($event)"
+          ></app-movie-filters-form>
+        </app-sidebar>
+      </aside>
+      <!-- /.movies-list__aside -->
 
-<app-movie
-  *ngFor="let movie of movies" class="movie"
-  [movie]="movie"
->
-</app-movie><!-- /.app-movie -->
+      <div class="movies-list__main">
+        <app-movie *ngFor="let movie of movies" class="movie" [movie]="movie">
+        </app-movie
+        ><!-- /.app-movie -->
 
-<mat-paginator
-  [length]="length"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="pageSizeOptions"
-  [pageIndex]="pageIndex"
-  (page)="setPageParams($event)"
-  aria-label="Select page"
->
-</mat-paginator>
+        <mat-paginator
+          [length]="length"
+          [pageSize]="pageSize"
+          [pageSizeOptions]="pageSizeOptions"
+          [pageIndex]="pageIndex"
+          (page)="setPageParams($event)"
+          aria-label="Select page"
+        >
+        </mat-paginator>
+      </div>
+      <!-- /.movies-list__main -->
+    </div>
+    <!-- /.movies-list__inner -->
+  </div><!-- /.shell -->
+</div>
+<!-- /.movies-list -->

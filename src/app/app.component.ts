@@ -8,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-movies';
+  showSidebar = false;
+  sidebarRight = false;
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, pipe } from 'rxjs';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { MovieService } from 'src/app/shared/services/movie/movie.service';
 import {
   FiltrationParams,
@@ -36,6 +36,14 @@ export class MovieFiltersFormComponent implements OnInit {
   };
 
   constructor(private movieService: MovieService) {}
+
+  getFormControl(name: string) {
+    return this.formModel.get(name) as FormControl;
+  }
+
+  getGenreId(genre: Genre) {
+    return `genre-${genre.id}`;
+  }
 
   setValidationValues(validations: FiltrationValidationResponse) {
     const { filters } = validations;
@@ -83,10 +91,6 @@ export class MovieFiltersFormComponent implements OnInit {
     });
   }
 
-  getFormControl(name: string) {
-    return this.formModel.get(name) as FormControl;
-  }
-
   addGenresToForm() {
     this.movieService.getGenres().subscribe((res) => {
       this.genres = res.data;
@@ -96,21 +100,6 @@ export class MovieFiltersFormComponent implements OnInit {
       for (const genre of this.genres) {
         genresGroup.addControl(genre.name, new FormControl(false));
       }
-    });
-  }
-
-  ngOnInit(): void {
-    this.movieService.getFiltrationValidationValues().subscribe({
-      next: (res) => {
-        this.setValidationValues(res);
-        this.formModel = this.initForm();
-        this.addGenresToForm();
-        this.onFormChange();
-      },
-      error: (err) => {
-        console.error(err);
-      },
-      complete: () => {},
     });
   }
 
@@ -148,7 +137,18 @@ export class MovieFiltersFormComponent implements OnInit {
       });
   }
 
-  getGenreId(genre: Genre) {
-    return `genre-${genre.id}`;
+  ngOnInit(): void {
+    this.movieService.getFiltrationValidationValues().subscribe({
+      next: (res) => {
+        this.setValidationValues(res);
+        this.formModel = this.initForm();
+        this.addGenresToForm();
+        this.onFormChange();
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      complete: () => {},
+    });
   }
 }

@@ -17,6 +17,7 @@ import { TmdbService } from '../shared/services/tmdb/tmdb.service';
 import { MatSliderModule } from '@angular/material/slider';
 import { NouisliderModule } from 'ng2-nouislider';
 import { RangeSliderComponent } from '../shared/components/range-slider/range-slider.component';
+import { SidebarComponent } from '../shared/components/sidebar/sidebar.component';
 
 console.log('movies module');
 
@@ -41,6 +42,7 @@ console.log('movies module');
     MatSliderModule,
     NouisliderModule,
     RangeSliderComponent,
+    SidebarComponent,
   ],
 })
 export class MoviesModule {}

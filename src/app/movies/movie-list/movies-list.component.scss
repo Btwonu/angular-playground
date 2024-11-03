@@ -1,0 +1,14 @@
+.movies-list {
+  &__inner {
+    display: flex;
+  }
+
+  &__aside {
+    flex: 0 0 max(22vw, 300px);
+  }
+
+  &__main {
+    flex-grow: 1;
+    padding: 20px;
+  }
+}
