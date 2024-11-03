@@ -58,26 +58,6 @@ ul {
   padding-top: 56px;
 }
 
-.header {
-  position: fixed;
-  z-index: 100;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 56px;
-  background: #303030;
-  border: 2px solid red;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-inline: 2rem;
-}
-
-.header .nav ul {
-  display: flex;
-  gap: 1rem;
-}
-
 .footer {
   border: 2px solid red;
 }

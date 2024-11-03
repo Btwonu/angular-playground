@@ -1,50 +1,11 @@
 <div class="wrapper">
-  <header class="header">
-    <nav class="nav">
-      <ul>
-        <li>
-          <a routerLink="/" routerLinkActive="active-link">Home</a>
-        </li>
-
-        <li>
-          <a routerLink="/movies" routerLinkActive="active-link">Movies</a>
-        </li>
-
-        <li>
-          <a routerLink="/series" routerLinkActive="active-link">Series</a>
-        </li>
-      </ul>
-    </nav>
-    <!-- /.nav -->
-
-    <div class="header__search">
-      <input type="search" />
-    </div>
-    <!-- /.header__search -->
-
-    <nav class="nav">
-      <ul>
-        <li>
-          <a routerLink="/watchlists" routerLinkActive="active-link"
-            >Watchlists</a
-          >
-        </li>
-
-        <li>
-          <a routerLink="/profile" routerLinkActive="active-link">Profile</a>
-        </li>
-      </ul>
-    </nav>
-    <!-- /.nav -->
-  </header>
+  <app-header></app-header>
 
   <main class="main">
     <router-outlet></router-outlet>
   </main>
 
-  <footer class="footer">
-    <p>&copy; 2021 Movie App</p>
-  </footer>
+  <app-footer></app-footer>
   <!-- /.footer -->
 </div>
 <!-- /.wrapper -->

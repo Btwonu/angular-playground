@@ -15,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { TmdbInterceptor } from './shared/services/tmdb/tmdb-interceptor';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
@@ -29,6 +31,8 @@ import { TmdbInterceptor } from './shared/services/tmdb/tmdb-interceptor';
     MatIconModule,
     MatSnackBarModule,
     FormsModule,
+    HeaderComponent,
+    FooterComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TmdbInterceptor, multi: true },
