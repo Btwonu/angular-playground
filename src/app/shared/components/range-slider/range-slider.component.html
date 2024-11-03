@@ -1,27 +1,32 @@
-<fieldset>
-  <legend>{{ label }}</legend>
+<div class="range-slider">
+  <div class="range-slider__inner">
+    <mat-form-field>
+      <mat-label>{{ labelMin }}</mat-label>
 
-  <label [for]="idMin">{{ labelMin }}</label>
+      <input
+        matInput
+        type="number"
+        [min]="min"
+        [max]="max"
+        [value]="control.value[0]"
+        (input)="onMinChange($event)"
+      />
+    </mat-form-field>
 
-  <input
-    type="number"
-    [id]="idMin"
-    [min]="min"
-    [max]="max"
-    [value]="control.value[0]"
-    (input)="onMinChange($event)"
-  />
+    <mat-form-field>
+      <mat-label>{{ labelMax }}</mat-label>
 
-  <label [for]="idMax">{{ labelMax }}</label>
-
-  <input
-    type="number"
-    [id]="idMax"
-    [min]="min"
-    [max]="max"
-    [value]="control.value[1]"
-    (input)="onMaxChange($event)"
-  />
+      <input
+        matInput
+        type="number"
+        [min]="min"
+        [max]="max"
+        [value]="control.value[1]"
+        (input)="onMaxChange($event)"
+      />
+    </mat-form-field>
+  </div>
+  <!-- /.range-slider__inner -->
 
   <nouislider
     [connect]="true"
@@ -30,4 +35,5 @@
     [step]="1"
     [formControl]="control"
   ></nouislider>
-</fieldset>
+</div>
+<!-- /.range-slider -->
