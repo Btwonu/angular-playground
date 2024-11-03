@@ -18,6 +18,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { NouisliderModule } from 'ng2-nouislider';
 import { RangeSliderComponent } from '../shared/components/range-slider/range-slider.component';
 import { SidebarComponent } from '../shared/components/sidebar/sidebar.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 console.log('movies module');
 
@@ -36,13 +37,14 @@ console.log('movies module');
     CommonModule,
     MoviesRoutingModule,
     MatPaginatorModule,
-    FormComponent,
-    DialogComponent,
     ReactiveFormsModule,
     MatSliderModule,
     NouisliderModule,
+    MatExpansionModule,
     RangeSliderComponent,
     SidebarComponent,
+    FormComponent,
+    DialogComponent,
   ],
 })
 export class MoviesModule {}

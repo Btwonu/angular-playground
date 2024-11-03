@@ -1,61 +1,91 @@
-<h2>Movie Filters</h2>
-
 <form *ngIf="formModel" [formGroup]="formModel">
-  <app-range-slider
-    labelMin="From"
-    labelMax="To"
-    label="Year"
-    idMin="year_gt"
-    idMax="year_lt"
-    [min]="year.min"
-    [max]="year.max"
-    [control]="getFormControl('year')"
-  ></app-range-slider>
+  <mat-accordion displayMode="flat" multi="true">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Year</mat-panel-title>
+      </mat-expansion-panel-header>
 
-  <app-range-slider
-    labelMin="From"
-    labelMax="To"
-    label="Runtime"
-    idMin="runtime_gt"
-    idMax="runtime_lt"
-    [min]="runtime.min"
-    [max]="runtime.max"
-    [control]="getFormControl('runtime')"
-  ></app-range-slider>
+      <app-range-slider
+        labelMin="From"
+        labelMax="To"
+        label="Year"
+        idMin="year_gt"
+        idMax="year_lt"
+        [min]="year.min"
+        [max]="year.max"
+        [control]="getFormControl('year')"
+      ></app-range-slider>
+    </mat-expansion-panel>
 
-  <app-range-slider
-    labelMin="From"
-    labelMax="To"
-    label="Rating"
-    idMin="rating_gt"
-    idMax="rating_lt"
-    [min]="rating.min"
-    [max]="rating.max"
-    [control]="getFormControl('rating')"
-  ></app-range-slider>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Runtime</mat-panel-title>
+      </mat-expansion-panel-header>
 
-  <app-range-slider
-    labelMin="From"
-    labelMax="To"
-    label="Votes"
-    idMin="votes_gt"
-    idMax="votes_lt"
-    [min]="votes.min"
-    [max]="votes.max"
-    [control]="getFormControl('votes')"
-  ></app-range-slider>
+      <app-range-slider
+        labelMin="From"
+        labelMax="To"
+        label="Runtime"
+        idMin="runtime_gt"
+        idMax="runtime_lt"
+        [min]="runtime.min"
+        [max]="runtime.max"
+        [control]="getFormControl('runtime')"
+      ></app-range-slider>
+    </mat-expansion-panel>
 
-  <fieldset *ngIf="genres?.length" formArrayName="genres">
-    <legend>Genres</legend>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Rating</mat-panel-title>
+      </mat-expansion-panel-header>
 
-    <div *ngFor="let genre of genres; let i = index">
-      <label [for]="getGenreId(genre)">{{ genre.name }}</label>
+      <app-range-slider
+        labelMin="From"
+        labelMax="To"
+        label="Rating"
+        idMin="rating_gt"
+        idMax="rating_lt"
+        [min]="rating.min"
+        [max]="rating.max"
+        [control]="getFormControl('rating')"
+      ></app-range-slider>
+    </mat-expansion-panel>
 
-      <input
-        type="checkbox"
-        [id]="getGenreId(genre)"
-        [formControlName]="genre.name"
-      />
-    </div>
-  </fieldset>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Votes</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <app-range-slider
+        labelMin="From"
+        labelMax="To"
+        label="Votes"
+        idMin="votes_gt"
+        idMax="votes_lt"
+        [min]="votes.min"
+        [max]="votes.max"
+        [control]="getFormControl('votes')"
+      ></app-range-slider>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Genres</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <fieldset *ngIf="genres?.length" formArrayName="genres">
+        <legend>Genres</legend>
+
+        <div *ngFor="let genre of genres; let i = index">
+          <label [for]="getGenreId(genre)">{{ genre.name }}</label>
+
+          <input
+            type="checkbox"
+            [id]="getGenreId(genre)"
+            [formControlName]="genre.name"
+          />
+        </div>
+      </fieldset>
+    </mat-expansion-panel>
+  </mat-accordion>
 </form>
