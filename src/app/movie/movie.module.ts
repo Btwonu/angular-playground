@@ -9,7 +9,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormComponent } from '../shared/components/form/form.component';
 import { DialogComponent } from '../shared/components/dialog/dialog.component';
 import { MovieFiltersFormComponent } from './movie-filters-form/movie-filters-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TmdbService } from '../shared/services/tmdb/tmdb.service';
 import { MatSliderModule } from '@angular/material/slider';
 import { NouisliderModule } from 'ng2-nouislider';
@@ -22,6 +22,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ChooseWatchlistFormComponent } from './choose-watchlist-form/choose-watchlist-form.component';
+import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 console.log('movies module');
 
@@ -33,12 +36,17 @@ console.log('movies module');
     MovieComponent,
     MoviePaginationComponent,
     MovieFiltersFormComponent,
+    ChooseWatchlistFormComponent,
   ],
   imports: [
     CommonModule,
     MovieRoutingModule,
     MatPaginatorModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatSelectModule,
+    FormsModule,
     MatSliderModule,
     NouisliderModule,
     MatExpansionModule,
