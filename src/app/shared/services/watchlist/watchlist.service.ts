@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { CreateWatchlist } from 'src/app/types/watchlist';
+import { WatchlistListResponse } from 'src/app/types/watchlist';
 
 @Injectable({
   providedIn: 'root',
@@ -27,14 +28,14 @@ export class WatchlistService {
       .post(`https://movies.api/watchlists/${watchlistId}`, {
         movieId,
         status,
-        rating
+        rating,
       })
       .pipe(catchError(this.handleError));
   }
 
-  getUserWatchlists(): Observable<any> {
+  getUserWatchlists(): Observable<WatchlistListResponse> {
     return this.http
-      .get('https://movies.api/users/1/watchlists')
+      .get<WatchlistListResponse>('https://movies.api/users/1/watchlists')
       .pipe(catchError(this.handleError));
   }
 }

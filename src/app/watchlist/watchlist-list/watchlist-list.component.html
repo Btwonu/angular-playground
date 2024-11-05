@@ -1,0 +1,27 @@
+<ng-container *ngIf="watchlists && watchlists.length">
+  <div *ngFor="let watchlist of watchlists">
+    <!-- <app-watchlist-item [watchlist]="watchlist"></app-watchlist-item> -->
+
+    <div>
+      {{ watchlist.id }}
+    </div>
+
+    <div>{{ watchlist.title }}</div>
+
+    <div>
+      {{ watchlist.modifiedAt }}
+    </div>
+
+    <div>
+      {{ watchlist.itemsCount }}
+    </div>
+
+    <div>
+      {{ watchlist.private }}
+    </div>
+
+    <div>
+      <img [src]="watchlist.imageUrl">
+    </div>
+  </div>
+</ng-container>
