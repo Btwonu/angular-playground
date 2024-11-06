@@ -1,27 +1,13 @@
+<app-hero></app-hero>
+
 <ng-container *ngIf="watchlists && watchlists.length">
-  <div *ngFor="let watchlist of watchlists">
-    <!-- <app-watchlist-item [watchlist]="watchlist"></app-watchlist-item> -->
-
-    <div>
-      {{ watchlist.id }}
-    </div>
-
-    <div>{{ watchlist.title }}</div>
-
-    <div>
-      {{ watchlist.modifiedAt }}
-    </div>
-
-    <div>
-      {{ watchlist.itemsCount }}
-    </div>
-
-    <div>
-      {{ watchlist.private }}
-    </div>
-
-    <div>
-      <img [src]="watchlist.imageUrl">
-    </div>
-  </div>
+  <section class="watchlists">
+    <div class="shell">
+      <div class="watchlists__items">
+        <div class="watchlists__item" *ngFor="let watchlist of watchlists">
+          <app-watchlist [watchlist]="watchlist"></app-watchlist>
+        </div><!-- /.watchlists__item -->
+      </div>
+    </div><!-- /.shell -->
+  </section>
 </ng-container>

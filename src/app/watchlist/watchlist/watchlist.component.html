@@ -1,0 +1,25 @@
+<mat-card class="watchlist" *ngIf="watchlist">
+  <div class="watchlist__image">
+    <img [src]="watchlist.imageUrl">
+  </div>
+
+  <div class="watchlist__inner">
+    <div>
+      {{ watchlist.id }}
+    </div>
+
+    <div>{{ watchlist.title }}</div>
+
+    <div>
+      {{ watchlist.modifiedAt }}
+    </div>
+
+    <div>
+      {{ watchlist.itemsCount }}
+    </div>
+
+    <div>
+      {{ watchlist.private }}
+    </div>
+  </div><!-- /.watchlist__inner -->
+</mat-card>
