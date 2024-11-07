@@ -14,6 +14,20 @@ export interface Watchlist {
   imageUrl: string;
 }
 
+export interface CreateWatchlistRequest {
+  title: string;
+  description?: string;
+  visibility: 'private' | 'public';
+}
+
+export interface CreateWatchlistResponse {
+  id: string;
+  title: string;
+  description?: string;
+  visibility: 'private' | 'public';
+  createdAt: Date;
+}
+
 export interface WatchlistListResponse {
   data: Watchlist[];
 }

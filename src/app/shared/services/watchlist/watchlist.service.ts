@@ -2,23 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { CreateWatchlist } from 'src/app/types/watchlist';
-import { WatchlistListResponse } from 'src/app/types/watchlist';
+import {
+  WatchlistListResponse,
+  CreateWatchlistRequest,
+  CreateWatchlistResponse,
+} from 'src/app/types/watchlist';
+import { AppError } from '../../utils/error';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WatchlistService {
   constructor(private http: HttpClient) {}
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
-      console.log('client-side network error', error.error);
-    } else {
-      console.log('server-side error', error.error);
-    }
-
-    return throwError(() => new Error('Could not add movie to watchlist'));
-  }
 
   addToWatchlist(data: CreateWatchlist): Observable<any> {
     const { movieId, watchlistId, status, rating } = data;
@@ -30,12 +25,27 @@ export class WatchlistService {
         status,
         rating,
       })
-      .pipe(catchError(this.handleError));
+      .pipe(
+        catchError((error) =>
+          throwError(() => new AppError('Failed to add movie to watchlist'))
+        )
+      );
   }
 
   getUserWatchlists(): Observable<WatchlistListResponse> {
-    return this.http
-      .get<WatchlistListResponse>('https://movies.api/users/1/watchlists')
-      .pipe(catchError(this.handleError));
+    console.log('getUserWatchlists');
+
+    return this.http.get<WatchlistListResponse>(
+      'https://movies.api/users/1/watchlists'
+    );
+  }
+
+  createWatchlist(
+    data: Partial<CreateWatchlistRequest>
+  ): Observable<CreateWatchlistResponse> {
+    return this.http.post<CreateWatchlistResponse>(
+      'https://movies.api/watchlists',
+      data
+    );
   }
 }
