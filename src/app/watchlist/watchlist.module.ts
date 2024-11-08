@@ -13,6 +13,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { WatchlistDetailComponent } from './watchlist-detail/watchlist-detail.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 console.log('watchlists module');
 
@@ -22,6 +26,7 @@ console.log('watchlists module');
     WatchlistComponent,
     HeroComponent,
     CreateWatchlistFormComponent,
+    WatchlistDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +39,9 @@ console.log('watchlists module');
     MatRadioModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatTableModule,
+    MatMenuModule,
+    MatIconModule,
   ],
 })
 export class WatchlistModule {}

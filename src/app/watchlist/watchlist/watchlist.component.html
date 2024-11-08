@@ -1,4 +1,4 @@
-<mat-card class="watchlist" *ngIf="watchlist">
+<mat-card [routerLink]="['/watchlists', watchlist.id]" class="watchlist" *ngIf="watchlist">
   <div class="watchlist__image">
     <img [src]="watchlist.imageUrl">
   </div>

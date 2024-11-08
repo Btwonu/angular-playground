@@ -1,3 +1,5 @@
+import { Movie } from './movie';
+
 export interface CreateWatchlist {
   movieId: string;
   watchlistId: string;
@@ -9,9 +11,15 @@ export interface Watchlist {
   id: string;
   title: string;
   private: boolean;
-  modifiedAt: string;
+  createdAt: Date;
+  modifiedAt: Date;
   itemsCount: number;
   imageUrl: string;
+  movies: Movie[];
+}
+
+export interface WatchlistResponse {
+  data: Watchlist;
 }
 
 export interface CreateWatchlistRequest {

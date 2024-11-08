@@ -6,6 +6,7 @@ import {
   WatchlistListResponse,
   CreateWatchlistRequest,
   CreateWatchlistResponse,
+  WatchlistResponse,
 } from 'src/app/types/watchlist';
 import { AppError } from '../../utils/error';
 
@@ -46,6 +47,12 @@ export class WatchlistService {
     return this.http.post<CreateWatchlistResponse>(
       'https://movies.api/watchlists',
       data
+    );
+  }
+
+  getOne(id: number): Observable<WatchlistResponse> {
+    return this.http.get<WatchlistResponse>(
+      `https://movies.api/watchlists/${id}`
     );
   }
 }
