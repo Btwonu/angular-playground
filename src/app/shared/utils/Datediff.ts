@@ -5,16 +5,6 @@ export default class Datediff {
   constructor(start: Date, end: Date) {
     this.start = start;
     this.end = end;
-
-    console.log({start});
-    console.log({end});
-
-    console.log('this.end.getTime()', this.end.getTime());
-    console.log('this.start.getTime()', this.start.getTime());
-
-    console.log(Math.floor((this.end.getTime() - this.start.getTime()) / 1000) / 60 / 60);
-
-
   }
 
   getSeconds() {
