@@ -2,7 +2,7 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title>
-        <a [routerLink]="['/movies', movie?.movie_id]"
+        <a [routerLink]="['/movies', movie?.movieId]"
           >Title: {{ movie?.title }}</a
         >
       </mat-card-title>
@@ -12,13 +12,13 @@
       <div class="movie-content">
         <p>Title: {{ movie?.title }}</p>
 
-        <p>start_year: {{ movie?.start_year }}</p>
+        <p>startYear: {{ movie?.startYear }}</p>
 
-        <p>runtime_minutes: {{ movie?.runtime_minutes }}</p>
+        <p>runtimeMinutes: {{ movie?.runtimeMinutes }}</p>
 
         <p>rating: {{ movie?.rating }}</p>
 
-        <p>votes_count: {{ movie?.votes_count }}</p>
+        <p>votesCount: {{ movie?.votesCount }}</p>
 
         <p>genres:</p>
 
@@ -27,9 +27,9 @@
         </ul>
       </div>
 
-      <app-form [movieId]="movie?.movie_id"></app-form>
+      <app-form [movieId]="movie?.movieId"></app-form>
     </app-dialog>
-    <!-- <button (click)="addToWatchlist(movie?.movie_id)">Add</button> -->
+    <!-- <button (click)="addToWatchlist(movie?.movieId)">Add</button> -->
   </mat-card>
 </div>
 <!-- /.movie -->

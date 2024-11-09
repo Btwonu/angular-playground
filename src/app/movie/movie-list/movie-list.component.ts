@@ -19,10 +19,10 @@ export class MovieListComponent implements OnInit {
   pageEvent: PageEvent | null = null;
   filtrationParams: Partial<FiltrationParams> = {};
   displayedColumns: string[] = [
-    'movie_id',
+    'movieId',
     'title',
     'rating',
-    'start_year',
+    'startYear',
     'options',
   ];
   dialogRef: MatDialogRef<ChooseWatchlistFormComponent> | null = null;
@@ -69,7 +69,7 @@ export class MovieListComponent implements OnInit {
 
   openDialog(movie: Movie) {
     this.dialogRef = this.dialog.open(ChooseWatchlistFormComponent, {
-      data: { movieId: movie.movie_id },
+      data: { movieId: movie.movieId },
     });
     console.log('Add to watchlist', movie);
   }

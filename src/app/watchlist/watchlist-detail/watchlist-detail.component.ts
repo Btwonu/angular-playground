@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WatchlistService } from 'src/app/shared/services/watchlist/watchlist.service';
-import { Movie } from 'src/app/types/movie';
+import { Movie, MovieStatus } from 'src/app/types/movie';
 import Datediff from 'src/app/shared/utils/Datediff';
+import { environment } from 'src/environments/environment';
+
+const { imdb: { title: imdbTitleUrl } } = environment;
 
 @Component({
   selector: 'app-watchlist-detail',
@@ -19,10 +22,12 @@ export class WatchlistDetailComponent implements OnInit {
   private!: boolean;
   title = '';
   displayedColumns: string[] = [
-    'movie_id',
+    'movieId',
     'title',
+    'startYear',
     'rating',
-    'start_year',
+    'myRating',
+    'status',
     'options',
   ];
 
@@ -59,5 +64,22 @@ export class WatchlistDetailComponent implements OnInit {
     const dateDiff = new Datediff(new Date(this.modifiedAt), new Date());
 
     return dateDiff.getLargestFormattedDiff();
+  }
+
+  getMovieStatusClass(status: MovieStatus): string {
+    switch (status) {
+      case MovieStatus.Watched:
+        return 'status-watched';
+      case MovieStatus.PlanToWatch:
+        return 'status-plan-to-watch';
+      case MovieStatus.Watching:
+        return 'status-watching';
+      default:
+        return '';
+    }
+  }
+
+  getImdbUrl(movieId: string) {
+    return `${imdbTitleUrl}/${movieId}`;
   }
 }

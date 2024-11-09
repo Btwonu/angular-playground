@@ -1,11 +1,19 @@
+export enum MovieStatus {
+  Watched = "watched",
+  PlanToWatch = "plan to watch",
+  Watching = "watching",
+}
+
 export interface Movie {
-  movie_id: string;
+  movieId: string;
   title: string;
-  start_year: number;
-  runtime_minutes: number;
+  startYear: number;
+  runtimeMinutes: number;
   rating: number;
-  votes_count: number;
+  votesCount: number;
   genres: string[];
+  myRating: number | null;
+  status: MovieStatus;
 }
 
 export interface MoviesResponse {
