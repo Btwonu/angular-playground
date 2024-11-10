@@ -12,7 +12,7 @@ export interface Movie {
   rating: number;
   votesCount: number;
   genres: string[];
-  myRating: number | null;
+  myRating: number | undefined;
   status: MovieStatus;
 }
 
@@ -72,4 +72,9 @@ export interface FiltrationValidationResponse {
       max: number;
     };
   };
+}
+
+export interface UpdateMovieRatingRequest {
+  movieId: string;
+  rating: number;
 }

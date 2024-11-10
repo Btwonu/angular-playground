@@ -20,6 +20,10 @@ export class LoggingService {
     this.errorLog.stack = stack;
     this.errorLog.date = new Date();
 
+    console.error('LoggingService message:', message);
+    console.error('LoggingService stack:', stack);
+    console.error('LoggingService date:', this.errorLog.date);
+
     this.http.post('https://movies.api/errors', this.errorLog).subscribe();
   }
 }

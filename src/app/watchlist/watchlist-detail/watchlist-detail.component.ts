@@ -1,11 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WatchlistService } from 'src/app/shared/services/watchlist/watchlist.service';
 import { Movie, MovieStatus } from 'src/app/types/movie';
 import Datediff from 'src/app/shared/utils/Datediff';
 import { environment } from 'src/environments/environment';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ChooseRatingFormComponent } from 'src/app/shared/components/choose-rating-form/choose-rating-form.component';
+import { MatTableDataSource } from '@angular/material/table';
 
-const { imdb: { title: imdbTitleUrl } } = environment;
+const {
+  imdb: { title: imdbTitleUrl },
+} = environment;
 
 @Component({
   selector: 'app-watchlist-detail',
@@ -30,10 +35,13 @@ export class WatchlistDetailComponent implements OnInit {
     'status',
     'options',
   ];
+  dataSource = new MatTableDataSource<Movie>(this.movies);
 
   constructor(
     private router: ActivatedRoute,
-    private watchlistService: WatchlistService
+    private watchlistService: WatchlistService,
+    public dialog: MatDialog,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +58,7 @@ export class WatchlistDetailComponent implements OnInit {
         this.movies = res.data.movies;
         this.private = res.data.private;
         this.title = res.data.title;
+        this.dataSource.data = this.movies;
       });
     });
   }
@@ -81,5 +90,29 @@ export class WatchlistDetailComponent implements OnInit {
 
   getImdbUrl(movieId: string) {
     return `${imdbTitleUrl}/${movieId}`;
+  }
+
+  removeMovieFromWatchlist(movie: Movie) {
+    console.log('Remove from watchlist', movie);
+  }
+
+  rateMovie(movie: Movie) {
+    const dialogRef = this.dialog.open(ChooseRatingFormComponent, {
+      data: {
+        movieId: movie.movieId,
+        movieTitle: movie.title,
+        movieYear: movie.startYear,
+        movieRating: movie.myRating,
+      },
+    });
+
+    dialogRef.componentInstance.ratingUpdated.subscribe((movie: Movie) => {
+      const movieIndex = this.movies.findIndex(
+        (m) => m.movieId === movie.movieId
+      );
+
+      this.movies[movieIndex] = movie;
+      this.dataSource.data = this.movies;
+    });
   }
 }

@@ -1,0 +1,15 @@
+<ng-container *ngIf="ratingArr && ratingArr.length">
+  <p>Rate <span *ngIf="movieTitle">{{ movieTitle }}</span> <span *ngIf="movieYear"> ({{ movieYear }})</span></p>
+
+  <button
+    mat-icon-button
+    *ngFor="let rating of ratingArr; let i = index"
+    [matTooltip]="rating"
+    matTooltipPosition="above"
+    (mouseenter)="highlightPreviousSiblings(i)"
+    (mouseleave)="removeHighlight()"
+    (click)="rateMovie(rating)"
+  >
+    <mat-icon [ngClass]="{ highlighted: isHighlighted[i] }">star</mat-icon>
+  </button>
+</ng-container>

@@ -28,7 +28,7 @@
       <div class="section__inner">
         <main class="section__main">
           <div class="section__items" *ngIf="movies?.length">
-            <table mat-table [dataSource]="movies" class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
               <ng-container matColumnDef="movieId">
                 <th mat-header-cell *matHeaderCellDef>IMDB ID</th>
                 <td mat-cell *matCellDef="let element">
@@ -86,19 +86,19 @@
                   </button>
 
                   <mat-menu #menu="matMenu">
-                    <button mat-menu-item>
+                    <button mat-menu-item [routerLink]="['/movies', element.movieId]">
                       <mat-icon>format_list_bulleted</mat-icon>
 
                       <span>View Details</span>
                     </button>
 
-                    <button mat-menu-item>
-                      <mat-icon>add</mat-icon>
+                    <button mat-menu-item (click)="removeMovieFromWatchlist(element)">
+                      <mat-icon>remove_circle_outline</mat-icon>
 
-                      <span>Add to Watchlist</span>
+                      <span>Remove from Watchlist</span>
                     </button>
 
-                    <button mat-menu-item>
+                    <button mat-menu-item (click)="rateMovie(element)">
                       <mat-icon>star_rate</mat-icon>
 
                       <span>Rate</span>

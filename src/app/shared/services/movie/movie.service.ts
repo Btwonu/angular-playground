@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, tap } from 'rxjs';
-import { GenresResponse, Movie, MoviesResponse } from 'src/app/types/movie';
+import {
+  GenresResponse,
+  Movie,
+  MoviesResponse,
+  FiltrationParams,
+  FiltrationValidationResponse,
+  UpdateMovieRatingRequest,
+} from 'src/app/types/movie';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FiltrationParams, FiltrationValidationResponse } from 'src/app/types/movie';
 import { TmdbVideosResponse } from 'src/app/types/tmdb';
 import { environment } from 'src/environments/environment';
 import { convertCamelToSnake } from 'src/app/shared/utils/functions';
@@ -106,6 +112,16 @@ export class MovieService {
   }
 
   getFiltrationValidationValues(): Observable<FiltrationValidationResponse> {
-    return this.http.get<FiltrationValidationResponse>(this.filtrationValidationUrl);
+    return this.http.get<FiltrationValidationResponse>(
+      this.filtrationValidationUrl
+    );
+  }
+
+  rateMovie(data: UpdateMovieRatingRequest): Observable<Movie> {
+    const { movieId, rating } = data;
+
+    return this.http.patch<Movie>(`${this.moviesUrl}/${movieId}/rate`, {
+      rating,
+    });
   }
 }
