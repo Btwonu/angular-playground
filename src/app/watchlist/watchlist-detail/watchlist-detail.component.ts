@@ -10,6 +10,7 @@ import { ChooseRatingFormComponent } from 'src/app/shared/components/choose-rati
 import { AppError } from 'src/app/shared/utils/error';
 import { Movie, MovieStatus } from 'src/app/types/movie';
 import Datediff from 'src/app/shared/utils/Datediff';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 const {
   imdb: { title: imdbTitleUrl },
@@ -47,7 +48,8 @@ export class WatchlistDetailComponent implements OnInit {
     private watchlistService: WatchlistService,
     public dialog: MatDialog,
     private fb: FormBuilder,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -55,6 +57,12 @@ export class WatchlistDetailComponent implements OnInit {
       const { id: watchlistId } = params;
 
       this.initData(watchlistId);
+    });
+
+    this.authService.register().subscribe({
+      next: () => {
+        console.log('registered');
+      },
     });
   }
 

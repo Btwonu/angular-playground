@@ -16,6 +16,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { AppErrorHandler } from './shared/services/errors/error-handler';
 import { HttpErrorInterceptor } from './shared/services/errors/http-error-interceptor';
+import { AuthInterceptor } from './shared/services/auth/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
@@ -37,6 +38,7 @@ import { HttpErrorInterceptor } from './shared/services/errors/http-error-interc
     { provide: ErrorHandler, useClass: AppErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: TmdbInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
