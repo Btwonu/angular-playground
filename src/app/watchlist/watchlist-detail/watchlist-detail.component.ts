@@ -1,16 +1,27 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormControl, FormBuilder, FormArray } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { environment } from 'src/environments/environment';
 import { WatchlistService } from 'src/app/shared/services/watchlist/watchlist.service';
+import { NotificationService } from 'src/app/shared/services/notifications/notification.service';
+import { ChooseRatingFormComponent } from 'src/app/shared/components/choose-rating-form/choose-rating-form.component';
+import { AppError } from 'src/app/shared/utils/error';
 import { Movie, MovieStatus } from 'src/app/types/movie';
 import Datediff from 'src/app/shared/utils/Datediff';
-import { environment } from 'src/environments/environment';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ChooseRatingFormComponent } from 'src/app/shared/components/choose-rating-form/choose-rating-form.component';
-import { MatTableDataSource } from '@angular/material/table';
 
 const {
   imdb: { title: imdbTitleUrl },
 } = environment;
+
+@Component({
+  selector: 'app-change-movie-status',
+  template: '<h1>Change status</h1>',
+})
+class ChangeMovieStatusComponent {
+  constructor() {}
+}
 
 @Component({
   selector: 'app-watchlist-detail',
@@ -36,19 +47,22 @@ export class WatchlistDetailComponent implements OnInit {
     'options',
   ];
   dataSource = new MatTableDataSource<Movie>(this.movies);
+  movieStatuses: MovieStatus[] = Object.values(MovieStatus);
+  movieStatusControls!: FormArray;
 
   constructor(
     private router: ActivatedRoute,
     private watchlistService: WatchlistService,
     public dialog: MatDialog,
-    private cd: ChangeDetectorRef
+    private fb: FormBuilder,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
     this.router.params.subscribe((params) => {
       const { id: watchlistId } = params;
 
-      this.getWatchlistData(watchlistId);
+      this.initData(watchlistId);
     });
   }
 
@@ -64,17 +78,52 @@ export class WatchlistDetailComponent implements OnInit {
     return dateDiff.getLargestFormattedDiff();
   }
 
-  getWatchlistData(watchlistId: string) {
-    this.watchlistService.getOne(watchlistId).subscribe((res) => {
-      this.id = res.data.id;
-      this.imageUrl = res.data.imageUrl;
-      this.itemsCount = res.data.itemsCount;
-      this.createdAt = res.data.createdAt;
-      this.modifiedAt = res.data.modifiedAt;
-      this.movies = res.data.movies;
-      this.private = res.data.private;
-      this.title = res.data.title;
-      this.dataSource.data = this.movies;
+  initData(watchlistId: string) {
+    this.watchlistService.getOne(watchlistId).subscribe({
+      next: (res) => {
+        this.id = res.data.id;
+        this.imageUrl = res.data.imageUrl;
+        this.itemsCount = res.data.itemsCount;
+        this.createdAt = res.data.createdAt;
+        this.modifiedAt = res.data.modifiedAt;
+        this.movies = res.data.movies;
+        this.private = res.data.private;
+        this.title = res.data.title;
+        this.dataSource.data = this.movies;
+
+        this.movieStatusControls = this.fb.array(
+          this.movies.map((movie) => new FormControl(movie.status))
+        );
+
+        this.subscribeToStatusChange();
+      },
+    });
+  }
+
+  subscribeToStatusChange() {
+    this.movieStatusControls.valueChanges.subscribe((statuses) => {
+      statuses.forEach((status: any, index: number) => {
+        const movie = this.movies[index];
+        const previousStatus = movie.status;
+
+        if (movie.status !== status) {
+          this.watchlistService
+            .changeMovieStatus({
+              watchlistId: this.id,
+              movieId: movie.movieId,
+              status,
+            })
+            .subscribe({
+              next: () => {
+                this.notificationService.showSuccess('Changed movie status');
+              },
+              error: () => {
+                this.getStatusFormControl(index).setValue(previousStatus);
+                throw new AppError('Failed to change movie status');
+              },
+            });
+        }
+      });
     });
   }
 
@@ -100,7 +149,7 @@ export class WatchlistDetailComponent implements OnInit {
       .removeFromWatchlist({ watchlistId: this.id, movieId: movie.movieId })
       .subscribe({
         next: () => {
-          this.getWatchlistData(this.id);
+          this.initData(this.id);
         },
       });
   }
@@ -123,5 +172,9 @@ export class WatchlistDetailComponent implements OnInit {
       this.movies[movieIndex] = movie;
       this.dataSource.data = this.movies;
     });
+  }
+
+  getStatusFormControl(i: number) {
+    return this.movieStatusControls.at(i) as FormControl;
   }
 }

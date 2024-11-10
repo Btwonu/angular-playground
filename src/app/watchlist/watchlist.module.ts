@@ -42,6 +42,7 @@ console.log('watchlists module');
     MatTableModule,
     MatMenuModule,
     MatIconModule,
+    ReactiveFormsModule,
   ],
 })
 export class WatchlistModule {}

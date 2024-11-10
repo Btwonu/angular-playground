@@ -62,14 +62,20 @@
   }
 }
 
-.status-watched {
+.status-watched ::ng-deep.mat-select-value-text {
   color: #61ee61;
 }
 
-.status-plan-to-watch {
+.status-plan-to-watch ::ng-deep.mat-select-value-text {
   color: #a9a9f2;
 }
 
-.status-watching {
+.status-watching ::ng-deep.mat-select-value-text {
   color: #f9c25c;
+}
+
+.mat-column-options:not(th) {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 8px;
 }
