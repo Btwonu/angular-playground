@@ -58,7 +58,7 @@ export class ChooseRatingFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.isHighlighted = this.isHighlighted.map((_, i) =>
-      i + 1 > this.movieRating ? false : true
+      Boolean(this.movieRating && i + 1 <= this.movieRating)
     );
   }
 
