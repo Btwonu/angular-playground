@@ -9,7 +9,7 @@ import {
 import { NgForm, NgModel } from '@angular/forms';
 import { NotificationService } from 'src/app/shared/services/notifications/notification.service';
 import { WatchlistService } from 'src/app/shared/services/watchlist/watchlist.service';
-import { CreateWatchlist } from 'src/app/types/watchlist';
+import { AddMovieRequest } from 'src/app/types/watchlist';
 import { range } from 'src/app/shared/utils/functions';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -70,7 +70,7 @@ export class ChooseWatchlistFormComponent implements OnInit {
       watchlistId: this.form.value.watchlist,
       status: this.form.value.status,
       rating: this.form.value.rating,
-    } as CreateWatchlist;
+    } as AddMovieRequest;
 
     console.log(`Valid: ${this.form.valid}`);
     console.log(this.form.value);

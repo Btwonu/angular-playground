@@ -46,20 +46,9 @@ export class WatchlistDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.params.subscribe((params) => {
-      const { id } = params;
-      const watchlistId = parseInt(id);
+      const { id: watchlistId } = params;
 
-      this.watchlistService.getOne(watchlistId).subscribe((res) => {
-        this.id = res.data.id;
-        this.imageUrl = res.data.imageUrl;
-        this.itemsCount = res.data.itemsCount;
-        this.createdAt = res.data.createdAt;
-        this.modifiedAt = res.data.modifiedAt;
-        this.movies = res.data.movies;
-        this.private = res.data.private;
-        this.title = res.data.title;
-        this.dataSource.data = this.movies;
-      });
+      this.getWatchlistData(watchlistId);
     });
   }
 
@@ -73,6 +62,20 @@ export class WatchlistDetailComponent implements OnInit {
     const dateDiff = new Datediff(new Date(this.modifiedAt), new Date());
 
     return dateDiff.getLargestFormattedDiff();
+  }
+
+  getWatchlistData(watchlistId: string) {
+    this.watchlistService.getOne(watchlistId).subscribe((res) => {
+      this.id = res.data.id;
+      this.imageUrl = res.data.imageUrl;
+      this.itemsCount = res.data.itemsCount;
+      this.createdAt = res.data.createdAt;
+      this.modifiedAt = res.data.modifiedAt;
+      this.movies = res.data.movies;
+      this.private = res.data.private;
+      this.title = res.data.title;
+      this.dataSource.data = this.movies;
+    });
   }
 
   getMovieStatusClass(status: MovieStatus): string {
@@ -93,7 +96,13 @@ export class WatchlistDetailComponent implements OnInit {
   }
 
   removeMovieFromWatchlist(movie: Movie) {
-    console.log('Remove from watchlist', movie);
+    this.watchlistService
+      .removeFromWatchlist({ watchlistId: this.id, movieId: movie.movieId })
+      .subscribe({
+        next: () => {
+          this.getWatchlistData(this.id);
+        },
+      });
   }
 
   rateMovie(movie: Movie) {

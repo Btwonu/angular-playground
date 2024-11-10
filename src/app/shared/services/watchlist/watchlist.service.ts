@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { CreateWatchlist } from 'src/app/types/watchlist';
 import {
+  AddMovieRequest,
   WatchlistListResponse,
   CreateWatchlistRequest,
   CreateWatchlistResponse,
   WatchlistResponse,
+  RemoveFromWatchlistRequest,
 } from 'src/app/types/watchlist';
 import { AppError } from '../../utils/error';
 
@@ -16,7 +17,7 @@ import { AppError } from '../../utils/error';
 export class WatchlistService {
   constructor(private http: HttpClient) {}
 
-  addToWatchlist(data: CreateWatchlist): Observable<any> {
+  addToWatchlist(data: AddMovieRequest): Observable<any> {
     const { movieId, watchlistId, status, rating } = data;
 
     console.log(`Add ${movieId} to watchlist`);
@@ -27,15 +28,21 @@ export class WatchlistService {
         rating,
       })
       .pipe(
-        catchError((error) =>
+        catchError(() =>
           throwError(() => new AppError('Failed to add movie to watchlist'))
         )
       );
   }
 
-  getUserWatchlists(): Observable<WatchlistListResponse> {
-    console.log('getUserWatchlists');
+  removeFromWatchlist(data: RemoveFromWatchlistRequest): Observable<any> {
+    const { watchlistId, movieId } = data;
 
+    return this.http.delete<any>(
+      `https://movies.api/watchlists/${watchlistId}/movies/${movieId}`
+    );
+  }
+
+  getUserWatchlists(): Observable<WatchlistListResponse> {
     return this.http.get<WatchlistListResponse>(
       'https://movies.api/users/1/watchlists'
     );
@@ -50,9 +57,9 @@ export class WatchlistService {
     );
   }
 
-  getOne(id: number): Observable<WatchlistResponse> {
+  getOne(watchlistId: string): Observable<WatchlistResponse> {
     return this.http.get<WatchlistResponse>(
-      `https://movies.api/watchlists/${id}`
+      `https://movies.api/watchlists/${watchlistId}`
     );
   }
 }

@@ -15,7 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { WatchlistService } from '../../services/watchlist/watchlist.service';
 import { NotificationService } from '../../services/notifications/notification.service';
-import { CreateWatchlist } from 'src/app/types/watchlist';
+import { AddMovieRequest } from 'src/app/types/watchlist';
 
 const range = (start: any, end: any) => {
   return [...Array(end).keys()].map((i: any) => i + start);
@@ -82,7 +82,7 @@ export class FormComponent implements OnInit, AfterViewInit {
       watchlistId: this.form.value.watchlist,
       status: this.form.value.status,
       rating: this.form.value.rating,
-    } as CreateWatchlist;
+    } as AddMovieRequest;
 
     console.log(`Valid: ${this.form.valid}`);
     console.log(this.form.value);

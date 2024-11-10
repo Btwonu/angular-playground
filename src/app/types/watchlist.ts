@@ -1,6 +1,6 @@
 import { Movie } from './movie';
 
-export interface CreateWatchlist {
+export interface AddMovieRequest {
   movieId: string;
   watchlistId: string;
   status: string;
@@ -38,4 +38,9 @@ export interface CreateWatchlistResponse {
 
 export interface WatchlistListResponse {
   data: Watchlist[];
+}
+
+export interface RemoveFromWatchlistRequest {
+  watchlistId: string;
+  movieId: string;
 }
