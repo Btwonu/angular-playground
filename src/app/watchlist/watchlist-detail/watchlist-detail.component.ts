@@ -16,14 +16,6 @@ const {
 } = environment;
 
 @Component({
-  selector: 'app-change-movie-status',
-  template: '<h1>Change status</h1>',
-})
-class ChangeMovieStatusComponent {
-  constructor() {}
-}
-
-@Component({
   selector: 'app-watchlist-detail',
   templateUrl: './watchlist-detail.component.html',
   styleUrls: ['./watchlist-detail.component.scss'],
