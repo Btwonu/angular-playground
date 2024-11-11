@@ -17,6 +17,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { AppErrorHandler } from './shared/services/errors/error-handler';
 import { HttpErrorInterceptor } from './shared/services/errors/http-error-interceptor';
 import { AuthInterceptor } from './shared/services/auth/auth.interceptor';
+import { MatCardAvatar, MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
@@ -33,6 +34,7 @@ import { AuthInterceptor } from './shared/services/auth/auth.interceptor';
     FormsModule,
     HeaderComponent,
     FooterComponent,
+    MatCardModule,
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },

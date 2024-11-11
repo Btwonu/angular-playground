@@ -58,12 +58,6 @@ export class WatchlistDetailComponent implements OnInit {
 
       this.initData(watchlistId);
     });
-
-    this.authService.register().subscribe({
-      next: () => {
-        console.log('registered');
-      },
-    });
   }
 
   get createdSinceTime(): string {
