@@ -5,6 +5,8 @@ import { AuthService } from '../../services/auth/auth.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { AuthTabsComponent } from '../auth/auth-tabs/auth-tabs.component';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
+    MatDialogModule,
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
@@ -22,7 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class HeaderComponent implements OnInit {
   user$ = this.authService.user$;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, public dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -32,13 +35,7 @@ export class HeaderComponent implements OnInit {
   }
 
   login() {
+    this.dialog.open(AuthTabsComponent);
     console.log('login');
-    this.authService.login().subscribe({
-      next: (res) => {
-        console.log('logged in');
-
-        console.log(res);
-      },
-    });
   }
 }

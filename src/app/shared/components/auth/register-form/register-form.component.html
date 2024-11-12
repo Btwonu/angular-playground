@@ -1,0 +1,71 @@
+<form class="form-auth" [formGroup]="registerForm" (submit)="onSubmit()">
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Username</mat-label>
+
+      <input
+        name="register-uname"
+        id="register-uname"
+        matInput
+        formControlName="username"
+      />
+
+      <mat-error *ngIf="registerForm.get('username')?.hasError('required')"
+        >Username should contain at least 3 characters</mat-error
+      >
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Email</mat-label>
+
+      <input
+        type="email"
+        name="register-email"
+        id="register-email"
+        matInput
+        formControlName="email"
+      />
+
+      <mat-error
+        *ngIf="
+          registerForm.get('email')?.hasError('required') ||
+          registerForm.get('email')?.hasError('email')
+        "
+        >Please enter a valid email</mat-error
+      >
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Password</mat-label>
+
+      <input
+        type="password"
+        name="register-pass"
+        id="register-pass"
+        matInput
+        formControlName="password"
+      />
+
+      <mat-error *ngIf="password?.errors">Please enter a valid password</mat-error>
+    </mat-form-field>
+
+    <div>
+      <span>Password must contain:</span>
+
+      <ul>
+        <li>A minimum of 8 characters</li>
+
+        <li>At least one uppercase letter</li>
+
+        <li>At least one lowercase letter</li>
+
+        <li>At least one special character (@$!%*?&)</li>
+      </ul>
+    </div>
+  </div>
+</form>
+<!-- /.form-auth -->
