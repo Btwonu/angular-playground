@@ -9,6 +9,10 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { RegisterRequest } from 'src/app/types/auth';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import { AppError } from 'src/app/shared/utils/error';
 
 @Component({
   selector: 'app-register-form',
@@ -28,7 +32,11 @@ export class RegisterFormComponent implements OnInit {
   passwordPattern =
     '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$';
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    public dialogRef: MatDialogRef<RegisterFormComponent>
+  ) {
     this.registerForm = this.initForm();
   }
 
@@ -61,5 +69,22 @@ export class RegisterFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {}
+  onSubmit() {
+    const data: RegisterRequest = {
+      username: this.registerForm.get('username')?.value,
+      email: this.registerForm.get('email')?.value,
+      password: this.registerForm.get('password')?.value,
+    };
+
+    if (this.registerForm.valid) {
+      this.authService.register(data).subscribe({
+        next: () => {
+          this.dialogRef.close();
+        },
+        error: () => {
+          throw new AppError("Couldn't register.");
+        },
+      });
+    }
+  }
 }

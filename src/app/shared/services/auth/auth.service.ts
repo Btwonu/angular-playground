@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, shareReplay, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
-
-interface RegisterRequest {
-  email: string;
-  password: string;
-}
+import {
+  RegisterRequest,
+  LoginRequest,
+  TokenResponse,
+} from 'src/app/types/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -23,12 +23,9 @@ export class AuthService {
     }
   }
 
-  register() {
+  register(data: RegisterRequest) {
     return this.http
-      .post<RegisterRequest>('https://movies.api/auth/register', {
-        email: 'btwonu@mail.com',
-        password: 'password',
-      })
+      .post<TokenResponse>('https://movies.api/auth/register', data)
       .pipe(
         tap(this.setToken.bind(this)),
         tap(this.setUser.bind(this)),
@@ -36,12 +33,9 @@ export class AuthService {
       );
   }
 
-  login() {
+  login(data: LoginRequest) {
     return this.http
-      .post<RegisterRequest>('https://movies.api/auth/register', {
-        email: 'btwonu@mail.com',
-        password: 'password',
-      })
+      .post<TokenResponse>('https://movies.api/auth/login', data)
       .pipe(
         tap(this.setToken.bind(this)),
         tap(this.setUser.bind(this)),
