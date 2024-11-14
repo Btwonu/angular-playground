@@ -1,44 +1,27 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
-  EventEmitter,
+  Inject,
   Input,
   OnInit,
-  Output,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-import { FormsModule, NgForm, NgModel } from '@angular/forms';
-import { ListService } from '../../services/list/list.service';
-import { NotificationService } from '../../services/notifications/notification.service';
+import { NgForm, NgModel } from '@angular/forms';
+import { NotificationService } from 'src/app/shared/services/notifications/notification.service';
+import { ListService } from 'src/app/shared/services/list/list.service';
 import { AddMovieRequest } from 'src/app/types/list';
-
-const range = (start: any, end: any) => {
-  return [...Array(end).keys()].map((i: any) => i + start);
-};
+import { range } from 'src/app/shared/utils/functions';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-form',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatSelectModule,
-    FormsModule,
-  ],
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss'],
+  selector: 'app-choose-list-form',
+  templateUrl: './choose-list-form.component.html',
+  styleUrls: ['./choose-list-form.component.scss'],
 })
-export class FormComponent implements OnInit, AfterViewInit {
-  @ViewChild('addToListForm') form!: NgForm;
+export class ChooseListFormComponent implements OnInit {
+  @ViewChild('chooseListForm') form!: NgForm;
   @ViewChild('status') status!: NgModel;
   @ViewChild('list') list!: NgModel;
-  @Input('movieId') movieId: string | undefined;
 
   statuses: string[] = ['Plan to Watch', 'Watching', 'Watched'];
   ratings: number[] = range(1, 10);
@@ -46,12 +29,17 @@ export class FormComponent implements OnInit, AfterViewInit {
   currentList: string = '';
   currentStatus: string = '';
   currentRating: number | string = '';
+  movieId = '';
 
   constructor(
     private listService: ListService,
     private notificationService: NotificationService,
-    private cd: ChangeDetectorRef
-  ) {}
+    private cd: ChangeDetectorRef,
+    public dialogRef: MatDialogRef<ChooseListFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { movieId: string }
+  ) {
+    this.movieId = data.movieId;
+  }
 
   ngOnInit(): void {
     this.listService.getUserLists().subscribe((res) => {
@@ -63,7 +51,7 @@ export class FormComponent implements OnInit, AfterViewInit {
     this.cd.detectChanges();
   }
 
-  onSubmit() {
+  addToList() {
     console.log('Submit');
 
     if (this.form.invalid) {
@@ -90,6 +78,7 @@ export class FormComponent implements OnInit, AfterViewInit {
     const observer = {
       next: (res: any) => {
         this.notificationService.showSuccess('Movie added to list');
+        this.dialogRef.close();
       },
       error: (err: any) => {
         this.notificationService.showError(err.message);
@@ -97,5 +86,9 @@ export class FormComponent implements OnInit, AfterViewInit {
     };
 
     this.listService.addToList(data).subscribe(observer);
+  }
+
+  createNewList() {
+    console.log('Create new list');
   }
 }

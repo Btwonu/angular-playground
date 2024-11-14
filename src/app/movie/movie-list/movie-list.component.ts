@@ -3,7 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MovieService } from 'src/app/shared/services/movie/movie.service';
 import { Movie, FiltrationParams } from 'src/app/types/movie';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ChooseWatchlistFormComponent } from '../choose-watchlist-form/choose-watchlist-form.component';
+import { ChooseListFormComponent } from '../choose-list-form/choose-list-form.component';
 
 @Component({
   selector: 'app-movie-list',
@@ -25,7 +25,7 @@ export class MovieListComponent implements OnInit {
     'startYear',
     'options',
   ];
-  dialogRef: MatDialogRef<ChooseWatchlistFormComponent> | null = null;
+  dialogRef: MatDialogRef<ChooseListFormComponent> | null = null;
 
   constructor(private movieService: MovieService, public dialog: MatDialog) {}
 
@@ -68,10 +68,10 @@ export class MovieListComponent implements OnInit {
   }
 
   openDialog(movie: Movie) {
-    this.dialogRef = this.dialog.open(ChooseWatchlistFormComponent, {
+    this.dialogRef = this.dialog.open(ChooseListFormComponent, {
       data: { movieId: movie.movieId },
     });
-    console.log('Add to watchlist', movie);
+    console.log('Add to list', movie);
   }
 
   rate(movie: Movie) {

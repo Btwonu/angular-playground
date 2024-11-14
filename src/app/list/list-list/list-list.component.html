@@ -1,0 +1,13 @@
+<app-hero></app-hero>
+
+<ng-container *ngIf="lists && lists.length">
+  <section class="lists">
+    <div class="shell">
+      <div class="lists__items">
+        <div class="lists__item" *ngFor="let list of lists">
+          <app-list [list]="list"></app-list>
+        </div><!-- /.lists__item -->
+      </div>
+    </div><!-- /.shell -->
+  </section>
+</ng-container>

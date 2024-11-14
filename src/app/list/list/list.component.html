@@ -1,0 +1,25 @@
+<mat-card [routerLink]="['/lists', list.id]" class="list" *ngIf="list">
+  <div class="list__image">
+    <img [src]="list.imageUrl">
+  </div>
+
+  <div class="list__inner">
+    <div>
+      {{ list.id }}
+    </div>
+
+    <div>{{ list.title }}</div>
+
+    <div>
+      {{ list.modifiedAt }}
+    </div>
+
+    <div>
+      {{ list.itemsCount }}
+    </div>
+
+    <div>
+      {{ list.private }}
+    </div>
+  </div><!-- /.list__inner -->
+</mat-card>

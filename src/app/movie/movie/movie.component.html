@@ -8,7 +8,7 @@
       </mat-card-title>
     </mat-card-header>
 
-    <app-dialog [buttonLabel]="'Add to watchlist'">
+    <app-dialog [buttonLabel]="'Add to list'">
       <div class="movie-content">
         <p>Title: {{ movie?.title }}</p>
 
@@ -29,7 +29,7 @@
 
       <app-form [movieId]="movie?.movieId"></app-form>
     </app-dialog>
-    <!-- <button (click)="addToWatchlist(movie?.movieId)">Add</button> -->
+    <!-- <button (click)="addToList(movie?.movieId)">Add</button> -->
   </mat-card>
 </div>
 <!-- /.movie -->

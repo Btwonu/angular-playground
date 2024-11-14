@@ -1,4 +1,4 @@
-<form #addToListForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+<form #chooseListForm="ngForm" novalidate>
   <div>
     <mat-form-field appearance="fill" *ngIf="lists?.length">
       <mat-label>List</mat-label>
@@ -57,7 +57,9 @@
     </mat-form-field>
   </div>
 
-  <div>
-    <button type="submit" mat-raised-button color="accent">Add</button>
+  <div class="buttons">
+    <button mat-raised-button color="accent" (click)="createNewList()">Create New List</button>
+
+    <button type="submit" mat-raised-button color="primary" (click)="addToList()">Add</button>
   </div>
 </form>

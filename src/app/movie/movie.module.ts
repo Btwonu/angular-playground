@@ -22,7 +22,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { ChooseWatchlistFormComponent } from './choose-watchlist-form/choose-watchlist-form.component';
+import { ChooseListFormComponent } from './choose-list-form/choose-list-form.component';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 
@@ -36,7 +36,7 @@ console.log('movies module');
     MovieComponent,
     MoviePaginationComponent,
     MovieFiltersFormComponent,
-    ChooseWatchlistFormComponent,
+    ChooseListFormComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,33 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Enter the name of your list" id="create-list-title" formControlName="title">
+
+      <mat-error *ngIf="title?.errors?.['required']">Please enter a title</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <textarea matInput placeholder="Describe your list..." formControlName="description"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-radio-group aria-label="List visibility" formControlName="visibility">
+      <mat-radio-button checked value="private">Private</mat-radio-button>
+
+      <mat-radio-button value="public">Public</mat-radio-button>
+    </mat-radio-group>
+
+    <div class="visibility-message" *ngIf="form.get('visibility')">
+      <p *ngIf="form.get('visibility')?.value === 'private' || (form.valueChanges | async)?.visibility === 'private'">Others will not be able to view your list.</p>
+
+      <p *ngIf="form.get('visibility')?.value === 'public' || (form.valueChanges | async)?.visibility === 'public'">Your list will be visible to everyone.</p>
+    </div>
+  </div>
+
+  <div>
+    <button type="submit" mat-raised-button color="primary">Create</button>
+  </div>
+</form>

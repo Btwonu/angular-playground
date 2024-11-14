@@ -1,0 +1,12 @@
+.lists {
+  padding: 50px 0;
+
+  .lists__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+  }
+
+  .lists__item {
+  }
+}
