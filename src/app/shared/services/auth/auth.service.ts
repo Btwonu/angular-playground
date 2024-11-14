@@ -6,13 +6,14 @@ import {
   RegisterRequest,
   LoginRequest,
   TokenResponse,
+  User,
 } from 'src/app/types/auth';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private userSubject = new BehaviorSubject<any>(null);
+  private userSubject = new BehaviorSubject<User | null>(null);
   user$ = this.userSubject.asObservable();
 
   constructor(private http: HttpClient) {
@@ -55,7 +56,7 @@ export class AuthService {
     const decoded = jwtDecode(res.token);
     console.log(this.userSubject);
 
-    this.userSubject.next(decoded);
+    this.userSubject.next(decoded as User);
     localStorage.setItem('user', JSON.stringify(decoded));
   }
 

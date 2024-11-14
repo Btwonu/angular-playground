@@ -80,7 +80,7 @@ export class ChooseRatingFormComponent implements OnInit {
   rateMovie(rating: number) {
     this.movieService.rateMovie({ movieId: this.movieId, rating }).subscribe({
       next: (res: Movie) => {
-        this.movieRating = res.myRating!;
+        this.movieRating = res.userRating!;
         this.ratingUpdated.emit(res);
       },
     });

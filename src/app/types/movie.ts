@@ -2,6 +2,7 @@ export enum MovieStatus {
   Watched = "watched",
   PlanToWatch = "plan to watch",
   Watching = "watching",
+  Unwatched = "unwatched",
 }
 
 export interface Movie {
@@ -12,7 +13,7 @@ export interface Movie {
   rating: number;
   votesCount: number;
   genres: string[];
-  myRating: number | undefined;
+  userRating: number | undefined;
   status: MovieStatus;
 }
 

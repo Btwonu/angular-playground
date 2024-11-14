@@ -35,7 +35,7 @@ export class WatchlistDetailComponent implements OnInit {
     'title',
     'startYear',
     'rating',
-    'myRating',
+    'userRating',
     'status',
     'options',
   ];
@@ -154,7 +154,7 @@ export class WatchlistDetailComponent implements OnInit {
         movieId: movie.movieId,
         movieTitle: movie.title,
         movieYear: movie.startYear,
-        movieRating: movie.myRating,
+        movieRating: movie.userRating,
       },
     });
 
